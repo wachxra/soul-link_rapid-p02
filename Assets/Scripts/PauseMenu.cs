@@ -87,19 +87,24 @@ public class PauseMenuManager : MonoBehaviour
             settingsPanel.SetActive(false);
     }
 
-    public void Retry()
+    public void Retry(string sceneName)
     {
+        if (string.IsNullOrEmpty(sceneName)) return;
+
         Time.timeScale = 1f;
-        SceneManager.LoadScene(level1SceneName);
+        SceneManager.LoadScene(sceneName);
         GameIsPaused = false;
     }
 
-    public void BackToMainMenu()
+    public void BackToMainMenu(string sceneName)
     {
+        if (string.IsNullOrEmpty(sceneName)) return;
+
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadScene(sceneName);
         GameIsPaused = false;
     }
+
 
     public void ExitGame()
     {
