@@ -9,6 +9,8 @@ public class Key : MonoBehaviour
 
     [Header("UI")]
     public GameObject textPrefab;
+    public Vector3 textOffset = new Vector3(0, 1.5f, 0);
+    public Vector3 textScale = Vector3.one * 0.1f;
     [TextArea] public string pickupMessage = "Collected Key!";
 
     private static GameObject currentText;
@@ -26,17 +28,38 @@ public class Key : MonoBehaviour
                 {
                     if (currentText != null) Destroy(currentText);
 
-                    currentText = Instantiate(textPrefab, other.transform.position + Vector3.up * 1.5f, Quaternion.identity);
-                    currentText.transform.SetParent(other.transform);
+                    currentText = Instantiate(textPrefab, other.transform.position + textOffset, Quaternion.identity);
 
-                    var textMesh = currentText.GetComponent<TMPro.TextMeshProUGUI>();
-                    if (textMesh != null) textMesh.text = pickupMessage;
+                    currentText.transform.rotation = Quaternion.identity;
+                    currentText.transform.localScale = textScale;
 
+                    var textMesh = currentText.GetComponent<TextMeshProUGUI>();
+                    if (textMesh != null)
+                        textMesh.text = pickupMessage;
+
+                    currentText.AddComponent<FollowPlayer>().target = other.transform;
                     Destroy(currentText, textDuration);
                 }
 
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private class FollowPlayer : MonoBehaviour
+    {
+        public Transform target;
+        private Vector3 offset;
+
+        private void Start()
+        {
+            offset = transform.position - target.position;
+        }
+
+        private void LateUpdate()
+        {
+            if (target != null)
+                transform.position = target.position + offset;
         }
     }
 }
