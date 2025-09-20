@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class EndCredit : MonoBehaviour
 {
     [Header("Main Menu Scene Name")]
-    public string mainMenuScene = "MainMenu";
+    public string mainMenuScene = "MainMenu_Scene";
 
     private void Update()
     {
