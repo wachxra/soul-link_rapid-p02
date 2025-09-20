@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using TMPro;
 
 [System.Serializable]
 public class SceneBGM
@@ -36,6 +37,10 @@ public class AudioManager : MonoBehaviour
 
     [Header("SFX Entries")]
     public List<SFXEntry> sfxList;
+
+    [Header("Toggle Labels (optional)")]
+    public TMP_Text bgToggleLabel;
+    public TMP_Text sfxToggleLabel;
 
     private Dictionary<string, AudioSource> sfxDict = new Dictionary<string, AudioSource>();
     private AudioSource currentBGM = null;
@@ -118,17 +123,6 @@ public class AudioManager : MonoBehaviour
         UpdateUI();
     }
 
-    public void ToggleBG(bool isOn)
-    {
-        if (currentBGM != null)
-        {
-            currentBGM.mute = !isOn;
-            if (isOn && !currentBGM.isPlaying)
-                currentBGM.Play();
-        }
-        UpdateUI();
-    }
-
     public void SetSFXVolume(float volume)
     {
         sfxVolume = Mathf.Clamp01(volume);
@@ -137,23 +131,30 @@ public class AudioManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void ToggleBG(bool isOn)
+    {
+        if (currentBGM != null)
+        {
+            currentBGM.mute = !isOn;
+            if (isOn && !currentBGM.isPlaying)
+                currentBGM.Play();
+        }
+
+        if (bgToggleLabel != null)
+            bgToggleLabel.text = isOn ? "BGM: ON" : "BGM: OFF";
+
+        UpdateUI();
+    }
+
     public void ToggleSFX(bool isOn)
     {
         foreach (var sfx in sfxDict.Values)
             if (sfx != null) sfx.mute = !isOn;
-        UpdateUI();
-    }
 
-    public void PlaySFX(string key)
-    {
-        if (sfxDict.TryGetValue(key, out AudioSource sfx))
-        {
-            if (sfx != null)
-            {
-                sfx.volume = sfxVolume;
-                sfx.Play();
-            }
-        }
+        if (sfxToggleLabel != null)
+            sfxToggleLabel.text = isOn ? "SFX: ON" : "SFX: OFF";
+
+        UpdateUI();
     }
 
     private void UpdateUI()
@@ -166,6 +167,24 @@ public class AudioManager : MonoBehaviour
             bgToggle.SetIsOnWithoutNotify(currentBGM != null && !currentBGM.mute);
         if (sfxToggle != null)
             sfxToggle.SetIsOnWithoutNotify(CheckAnySFXEnabled());
+
+        if (bgToggleLabel != null)
+            bgToggleLabel.text = (currentBGM != null && !currentBGM.mute) ? "BGM: ON" : "BGM: OFF";
+
+        if (sfxToggleLabel != null)
+            sfxToggleLabel.text = CheckAnySFXEnabled() ? "SFX: ON" : "SFX: OFF";
+    }
+
+    public void PlaySFX(string key)
+    {
+        if (sfxDict.TryGetValue(key, out AudioSource sfx))
+        {
+            if (sfx != null)
+            {
+                sfx.volume = sfxVolume;
+                sfx.Play();
+            }
+        }
     }
 
     private bool CheckAnySFXEnabled()
