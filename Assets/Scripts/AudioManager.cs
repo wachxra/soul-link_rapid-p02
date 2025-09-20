@@ -38,6 +38,10 @@ public class AudioManager : MonoBehaviour
     [Header("SFX Entries")]
     public List<SFXEntry> sfxList;
 
+    [Header("Audio State")]
+    public bool bgMuted = false;
+    public bool sfxMuted = false;
+
     [Header("Toggle Labels (optional)")]
     public TMP_Text bgToggleLabel;
     public TMP_Text sfxToggleLabel;
@@ -88,6 +92,7 @@ public class AudioManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         PlayBGMForScene(scene.name);
+        UpdateUI();
     }
 
     public void PlayBGMForScene(string sceneName)
@@ -110,11 +115,12 @@ public class AudioManager : MonoBehaviour
         if (currentBGM != null)
         {
             currentBGM.volume = bgVolume;
-            currentBGM.mute = (bgToggle != null && !bgToggle.isOn) ? true : false;
-            if (!currentBGM.isPlaying)
+            currentBGM.mute = bgMuted;
+            if (!currentBGM.isPlaying && !bgMuted)
                 currentBGM.Play();
         }
     }
+
 
     public void SetBGVolume(float volume)
     {
@@ -133,10 +139,11 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleBG(bool isOn)
     {
+        bgMuted = !isOn;
         if (currentBGM != null)
         {
-            currentBGM.mute = !isOn;
-            if (isOn && !currentBGM.isPlaying)
+            currentBGM.mute = bgMuted;
+            if (!bgMuted && !currentBGM.isPlaying)
                 currentBGM.Play();
         }
 
@@ -148,8 +155,9 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleSFX(bool isOn)
     {
+        sfxMuted = !isOn;
         foreach (var sfx in sfxDict.Values)
-            if (sfx != null) sfx.mute = !isOn;
+            if (sfx != null) sfx.mute = sfxMuted;
 
         if (sfxToggleLabel != null)
             sfxToggleLabel.text = isOn ? "SFX: ON" : "SFX: OFF";
@@ -157,22 +165,25 @@ public class AudioManager : MonoBehaviour
         UpdateUI();
     }
 
+
     private void UpdateUI()
     {
         if (bgSlider != null)
             bgSlider.SetValueWithoutNotify(bgVolume);
         if (sfxSlider != null)
             sfxSlider.SetValueWithoutNotify(sfxVolume);
+
         if (bgToggle != null)
-            bgToggle.SetIsOnWithoutNotify(currentBGM != null && !currentBGM.mute);
+            bgToggle.SetIsOnWithoutNotify(!bgMuted);
+
         if (sfxToggle != null)
-            sfxToggle.SetIsOnWithoutNotify(CheckAnySFXEnabled());
+            sfxToggle.SetIsOnWithoutNotify(!sfxMuted);
 
         if (bgToggleLabel != null)
-            bgToggleLabel.text = (currentBGM != null && !currentBGM.mute) ? "BGM: ON" : "BGM: OFF";
+            bgToggleLabel.text = !bgMuted ? "BGM: ON" : "BGM: OFF";
 
         if (sfxToggleLabel != null)
-            sfxToggleLabel.text = CheckAnySFXEnabled() ? "SFX: ON" : "SFX: OFF";
+            sfxToggleLabel.text = !sfxMuted ? "SFX: ON" : "SFX: OFF";
     }
 
     public void PlaySFX(string key)
@@ -200,5 +211,26 @@ public class AudioManager : MonoBehaviour
         if (currentBGM != null) currentBGM.volume = bgVolume;
         foreach (var sfx in sfxDict.Values)
             if (sfx != null) sfx.volume = sfxVolume;
+    }
+
+    public void RegisterUI(Slider bg, Slider sfx, Toggle bgT, Toggle sfxT, TMP_Text bgLabel = null, TMP_Text sfxLabel = null)
+    {
+        bgSlider = bg;
+        sfxSlider = sfx;
+        bgToggle = bgT;
+        sfxToggle = sfxT;
+        bgToggleLabel = bgLabel;
+        sfxToggleLabel = sfxLabel;
+
+        if (bgSlider != null)
+            bgSlider.onValueChanged.AddListener(SetBGVolume);
+        if (sfxSlider != null)
+            sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        if (bgToggle != null)
+            bgToggle.onValueChanged.AddListener(ToggleBG);
+        if (sfxToggle != null)
+            sfxToggle.onValueChanged.AddListener(ToggleSFX);
+
+        UpdateUI();
     }
 }

@@ -2431,6 +2431,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   settingsPanel: {fileID: 1737396784}
+  bgSlider: {fileID: 2144298516}
+  sfxSlider: {fileID: 1308160783}
+  bgToggle: {fileID: 736809108}
+  sfxToggle: {fileID: 473168991}
+  bgLabel: {fileID: 1289529139}
+  sfxLabel: {fileID: 690305349}
 --- !u!224 &1353382075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4015,9 +4021,13 @@ MonoBehaviour:
   sceneBGMs:
   - sceneName: MainMenu_Scene
     bgmSource: {fileID: 2129266245}
+  - sceneName: Testing_Scene
+    bgmSource: {fileID: 2129266245}
   sfxList:
   - key: itemCollected
     sfxSource: {fileID: 2129266247}
+  bgMuted: 0
+  sfxMuted: 0
   bgToggleLabel: {fileID: 1289529139}
   sfxToggleLabel: {fileID: 690305349}
 --- !u!82 &2129266247

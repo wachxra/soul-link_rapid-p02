@@ -1,5 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using TMPro;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -12,6 +15,14 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Scene Names")]
     public string mainMenuSceneName = "MainMenu_Scene";
     public string level1SceneName = "Level01_Scene";
+
+    [Header("Settings UI Elements")]
+    public Slider bgSliderSettings;
+    public Slider sfxSliderSettings;
+    public Toggle bgToggleSettings;
+    public Toggle sfxToggleSettings;
+    public TMP_Text bgToggleLabelSettings;
+    public TMP_Text sfxToggleLabelSettings;
 
     private void Start()
     {
@@ -55,7 +66,20 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (settingsPanel != null)
             settingsPanel.SetActive(true);
+        
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.RegisterUI(
+                bgSliderSettings,
+                sfxSliderSettings,
+                bgToggleSettings,
+                sfxToggleSettings,
+                bgToggleLabelSettings,
+                sfxToggleLabelSettings
+            );
+        }
     }
+
 
     public void BackFromSettings()
     {
