@@ -30,7 +30,7 @@ public class GhostDoor : MonoBehaviour
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
-        UpdateDoorVisualForViewer(false); // player เริ่มแรก
+        UpdateDoorVisualForViewer(false);
     }
 
     private void Update()
@@ -63,6 +63,8 @@ public class GhostDoor : MonoBehaviour
                 RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, distance, obstacleLayer);
                 if (rayHit.collider != null) continue;
 
+                ResetAllBoxes();
+
                 health.TakeDamage(1);
                 damagedThisFrame.Add(health);
 
@@ -71,12 +73,12 @@ public class GhostDoor : MonoBehaviour
 
                 if (health.currentLife <= 0)
                 {
-                    ResetAllBoxes();
                     SceneManager.LoadScene(gameOverSceneName);
                 }
             }
         }
     }
+
 
     public void UpdateDoorVisualForViewer(bool isSpirit)
     {
