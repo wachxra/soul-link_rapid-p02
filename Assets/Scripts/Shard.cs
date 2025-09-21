@@ -13,7 +13,7 @@ public class Shard : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("Spirit"))
         {
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
@@ -23,20 +23,16 @@ public class Shard : MonoBehaviour
 
                 playerHealth.CollectShard();
 
-                if (textPrefab != null)
+                if (TextPopupManager.Instance != null)
                 {
-                    if (currentText != null) Destroy(currentText);
-
-                    currentText = Instantiate(textPrefab, collision.transform.position + textOffset, Quaternion.identity);
-                    currentText.transform.rotation = Quaternion.identity;
-                    currentText.transform.localScale = textScale;
-
-                    var textMesh = currentText.GetComponent<TextMeshPro>();
-                    if (textMesh != null)
-                        textMesh.text = $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards";
-
-                    currentText.AddComponent<FollowPlayer>().target = collision.transform;
-                    Destroy(currentText, textDuration);
+                    TextPopupManager.Instance.ShowText(
+                        textPrefab,
+                        collision.transform,
+                        textOffset,
+                        textScale,
+                        $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards",
+                        textDuration
+                    );
                 }
 
                 Destroy(gameObject);
@@ -44,21 +40,4 @@ public class Shard : MonoBehaviour
         }
     }
 
-    private class FollowPlayer : MonoBehaviour
-    {
-        public Transform target;
-        private Vector3 offset;
-
-        private void Start()
-        {
-            if (target != null)
-                offset = transform.position - target.position;
-        }
-
-        private void LateUpdate()
-        {
-            if (target != null)
-                transform.position = target.position + offset;
-        }
-    }
 }

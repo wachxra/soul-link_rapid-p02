@@ -24,41 +24,20 @@ public class Key : MonoBehaviour
             {
                 inventory.CollectKey(keyID);
 
-                if (textPrefab != null)
+                if (TextPopupManager.Instance != null)
                 {
-                    if (currentText != null) Destroy(currentText);
-
-                    currentText = Instantiate(textPrefab, other.transform.position + textOffset, Quaternion.identity);
-                    currentText.transform.rotation = Quaternion.identity;
-                    currentText.transform.localScale = textScale;
-
-                    var textMesh = currentText.GetComponent<TextMeshPro>();
-                    if (textMesh != null)
-                        textMesh.text = pickupMessage;
-
-                    currentText.AddComponent<FollowPlayer>().target = other.transform;
-                    Destroy(currentText, textDuration);
+                    TextPopupManager.Instance.ShowText(
+                        textPrefab,
+                        other.transform,
+                        textOffset,
+                        textScale,
+                        pickupMessage,
+                        textDuration
+                    );
                 }
 
                 Destroy(gameObject);
             }
-        }
-    }
-
-    private class FollowPlayer : MonoBehaviour
-    {
-        public Transform target;
-        private Vector3 offset;
-
-        private void Start()
-        {
-            offset = transform.position - target.position;
-        }
-
-        private void LateUpdate()
-        {
-            if (target != null)
-                transform.position = target.position + offset;
         }
     }
 }

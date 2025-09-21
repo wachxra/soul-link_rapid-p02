@@ -38,7 +38,7 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") && !other.CompareTag("Spirit")) return;
 
         playerNearby = true;
         ShowPrompt();
@@ -46,7 +46,7 @@ public class Lever : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") && !other.CompareTag("Spirit")) return;
 
         playerNearby = false;
         HidePrompt();

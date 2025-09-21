@@ -1,0 +1,153 @@
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class SpiritController : MonoBehaviour
+{
+    [Header("Movement Settings")]
+    public float moveSpeed = 6f;
+
+    [Header("References")]
+    public Transform hostBody;
+    public float maxRadius = 30f;
+
+    [HideInInspector] public float boxMoveSpeed = 5f;
+
+    [Header("Camera")]
+    public CameraFollowPlayer cameraFollow;
+
+    private Rigidbody2D rb;
+    private Vector2 moveInput;
+
+    private bool isPossessing = false;
+    private GameObject possessedBox;
+
+    private SpriteRenderer spriteRenderer;
+    private Collider2D col;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        col = GetComponent<Collider2D>();
+
+        gameObject.layer = LayerMask.NameToLayer("Spirit");
+        rb.gravityScale = 0;
+    }
+
+    private void Update()
+    {
+        if (isPossessing)
+        {
+            HandlePossession();
+        }
+        else
+        {
+            moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Collider2D hit = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Box"));
+                if (hit != null)
+                {
+                    PossessBox(hit.gameObject);
+                }
+            }
+        }
+
+        if (hostBody != null)
+        {
+            float dist = Vector2.Distance(transform.position, hostBody.position);
+            if (dist > maxRadius)
+            {
+                Vector2 dir = (transform.position - hostBody.position).normalized;
+                transform.position = hostBody.position + (Vector3)dir * maxRadius;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isPossessing)
+            rb.linearVelocity = moveInput.normalized * moveSpeed;
+        else
+            rb.linearVelocity = Vector2.zero;
+    }
+
+    private void PossessBox(GameObject box)
+    {
+        isPossessing = true;
+        possessedBox = box;
+        HideSpirit();
+
+        if (cameraFollow != null)
+            cameraFollow.player = possessedBox.transform;
+    }
+
+    private void HandlePossession()
+    {
+        if (possessedBox == null)
+        {
+            isPossessing = false;
+            ShowSpirit();
+            if (cameraFollow != null)
+                cameraFollow.player = this.transform;
+            return;
+        }
+
+        Rigidbody2D boxRb = possessedBox.GetComponent<Rigidbody2D>();
+        if (boxRb != null)
+        {
+            float move = Input.GetAxisRaw("Horizontal");
+            Vector2 proposedPos = boxRb.position + new Vector2(move * boxMoveSpeed * Time.deltaTime, 0);
+
+            if (hostBody != null)
+            {
+                float dist = Vector2.Distance(proposedPos, hostBody.position);
+                if (dist > maxRadius)
+                {
+                    Vector2 dir = (proposedPos - (Vector2)hostBody.position).normalized;
+                    proposedPos = (Vector2)hostBody.position + dir * maxRadius;
+                }
+            }
+
+            boxRb.MovePosition(proposedPos);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            isPossessing = false;
+
+            if (possessedBox != null)
+            {
+                transform.position = possessedBox.transform.position;
+            }
+
+            possessedBox = null;
+            ShowSpirit();
+
+            if (cameraFollow != null)
+                cameraFollow.player = this.transform;
+        }
+    }
+
+    private void ShowSpirit()
+    {
+        if (spriteRenderer != null) spriteRenderer.enabled = true;
+        if (col != null) col.enabled = true;
+    }
+
+    private void HideSpirit()
+    {
+        if (spriteRenderer != null) spriteRenderer.enabled = false;
+        if (col != null) col.enabled = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (hostBody != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(hostBody.position, maxRadius);
+        }
+    }
+}
