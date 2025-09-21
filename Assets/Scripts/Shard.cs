@@ -9,7 +9,7 @@ public class Shard : MonoBehaviour
     public Vector3 textScale = Vector3.one * 0.1f;
     public float textDuration = 2f;
 
-    private static GameObject currentText; // เพิ่มตรงนี้
+    private static GameObject currentText;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,7 +22,7 @@ public class Shard : MonoBehaviour
 
                 if (textPrefab != null)
                 {
-                    if (currentText != null) Destroy(currentText); // ลบ text เก่าก่อน
+                    if (currentText != null) Destroy(currentText);
 
                     currentText = Instantiate(textPrefab, collision.transform.position + textOffset, Quaternion.identity);
                     currentText.transform.rotation = Quaternion.identity;
