@@ -2821,9 +2821,10 @@ MonoBehaviour:
   alwaysOpenEyes: 0
   detectRange: 2
   gameOverSceneName: GameOver_Scene
-  firstSceneName: Testing_Scene
-  mainMenuSceneName: MainMenu_Scene
   obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  detectLayer:
     serializedVersion: 2
     m_Bits: 256
 --- !u!1 &799907313
@@ -3721,7 +3722,7 @@ MonoBehaviour:
   spiritPrefab: {fileID: 8977585645016906498, guid: 902965f491d6c394faa76ba9b3b1c031, type: 3}
   switchKey: 102
   spiritRadius: 15
-  boxMoveSpeed: 10
+  boxMoveSpeed: 15
   cameraFollow: {fileID: 1695603851}
 --- !u!1 &1200802599
 GameObject:

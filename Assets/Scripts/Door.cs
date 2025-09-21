@@ -54,6 +54,8 @@ public class Door : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (playerInventory.gameObject.CompareTag("Spirit")) return;
+
             if (playerInventory.HasKey(keyID))
             {
                 playerInventory.UseKey(keyID);

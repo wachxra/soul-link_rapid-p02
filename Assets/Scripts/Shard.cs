@@ -13,31 +13,39 @@ public class Shard : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Spirit"))
+        PlayerHealth playerHealth = null;
+
+        if (collision.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            playerHealth = collision.GetComponent<PlayerHealth>();
+        }
+        else if (collision.CompareTag("Spirit"))
+        {
+            SpiritController spirit = collision.GetComponent<SpiritController>();
+            if (spirit != null && spirit.hostBody != null)
+                playerHealth = spirit.hostBody.GetComponent<PlayerHealth>();
+        }
+
+        if (playerHealth != null)
+        {
+            if (PlayerHealth.totalShardsCollected >= playerHealth.shardToLife)
+                return;
+
+            playerHealth.CollectShard();
+
+            if (TextPopupManager.Instance != null)
             {
-                if (PlayerHealth.totalShardsCollected >= playerHealth.shardToLife)
-                    return;
-
-                playerHealth.CollectShard();
-
-                if (TextPopupManager.Instance != null)
-                {
-                    TextPopupManager.Instance.ShowText(
-                        textPrefab,
-                        collision.transform,
-                        textOffset,
-                        textScale,
-                        $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards",
-                        textDuration
-                    );
-                }
-
-                Destroy(gameObject);
+                TextPopupManager.Instance.ShowText(
+                    textPrefab,
+                    collision.transform,
+                    textOffset,
+                    textScale,
+                    $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards",
+                    textDuration
+                );
             }
+
+            Destroy(gameObject);
         }
     }
-
 }

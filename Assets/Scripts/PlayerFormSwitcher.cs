@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlayerFormSwitcher : MonoBehaviour
@@ -15,6 +16,20 @@ public class PlayerFormSwitcher : MonoBehaviour
 
     private GameObject spiritInstance;
     private bool isInSpirit = false;
+
+    void Start()
+    {
+        Collider2D playerCol = GetComponent<Collider2D>();
+        Collider2D[] boxCols = GameObject.FindGameObjectsWithTag("Box")
+                                       .Select(b => b.GetComponent<Collider2D>())
+                                       .ToArray();
+
+        foreach (var boxCol in boxCols)
+        {
+            if (boxCol != null)
+                Physics2D.IgnoreCollision(playerCol, boxCol, true);
+        }
+    }
 
     private void Update()
     {

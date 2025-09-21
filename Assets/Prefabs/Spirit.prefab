@@ -214,3 +214,5 @@ MonoBehaviour:
   moveSpeed: 6
   hostBody: {fileID: 0}
   maxRadius: 30
+  boxMoveSpeed: 5
+  cameraFollow: {fileID: 0}

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GhostDoor : MonoBehaviour
 {
@@ -12,15 +13,16 @@ public class GhostDoor : MonoBehaviour
 
     [Header("Scene Settings")]
     public string gameOverSceneName = "GameOver";
-    public string firstSceneName = "Level1";
-    public string mainMenuSceneName = "MainMenu";
 
     [Header("Obstacle Detection")]
     public LayerMask obstacleLayer;
+    public LayerMask detectLayer;
 
     private GameObject currentDoorInstance;
     private bool isEyesOpen = false;
     private float timer;
+
+    private HashSet<PlayerHealth> damagedThisFrame = new HashSet<PlayerHealth>();
 
     private void Start()
     {
@@ -30,6 +32,8 @@ public class GhostDoor : MonoBehaviour
 
     private void Update()
     {
+        damagedThisFrame.Clear();
+
         HandleEyeSwitch();
         HandlePlayerDetection();
         UpdateDoorCollider();
@@ -45,11 +49,6 @@ public class GhostDoor : MonoBehaviour
                 isEyesOpen = !isEyesOpen;
                 UpdateDoorPrefab();
                 timer = switchInterval;
-
-                if (isEyesOpen)
-                {
-                    HandlePlayerDetection();
-                }
             }
         }
         else
@@ -64,11 +63,6 @@ public class GhostDoor : MonoBehaviour
                 {
                     isEyesOpen = newEyesOpen;
                     UpdateDoorPrefab();
-
-                    if (isEyesOpen)
-                    {
-                        HandlePlayerDetection();
-                    }
                 }
             }
         }
@@ -78,21 +72,43 @@ public class GhostDoor : MonoBehaviour
     {
         if (!isEyesOpen) return;
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return;
+        // หา candidate ทั้งหมดใน detect range
+        Collider2D[] potentialTargets = Physics2D.OverlapCircleAll(transform.position, detectRange, detectLayer);
 
-        float distance = Vector2.Distance(transform.position, player.transform.position);
-        if (distance <= detectRange && !IsObstacleBlocking())
+        foreach (Collider2D hit in potentialTargets)
         {
-            PlayerHealth health = player.GetComponent<PlayerHealth>();
-            if (health != null)
+            PlayerHealth health = hit.GetComponent<PlayerHealth>();
+
+            if (health == null)
             {
+                SpiritController spirit = hit.GetComponent<SpiritController>();
+                if (spirit != null && spirit.hostBody != null)
+                {
+                    health = spirit.hostBody.GetComponent<PlayerHealth>();
+                }
+            }
+
+            if (health != null && !damagedThisFrame.Contains(health))
+            {
+                // ตรวจ line of sight
+                Vector2 dir = (hit.transform.position - transform.position).normalized;
+                float distance = Vector2.Distance(transform.position, hit.transform.position);
+
+                RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, distance, obstacleLayer);
+                if (rayHit.collider != null)
+                {
+                    // มี obstacle ขวาง → ข้าม target นี้
+                    continue;
+                }
+
+                // ไม่มี obstacle → ทำดาเมจ
                 health.TakeDamage(1);
+                damagedThisFrame.Add(health);
 
                 if (health.currentLife > 0)
                 {
-                    Vector3 startPos = health.startPosition;
-                    player.transform.position = startPos;
+                    if (hit.GetComponent<PlayerHealth>() != null)
+                        hit.transform.position = health.startPosition;
                 }
                 else
                 {
@@ -101,6 +117,7 @@ public class GhostDoor : MonoBehaviour
             }
         }
     }
+
 
     private void UpdateDoorCollider()
     {
@@ -136,16 +153,8 @@ public class GhostDoor : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (alwaysOpenEyes)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, detectRange);
-        }
-        else
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, detectRange);
-        }
+        Gizmos.color = alwaysOpenEyes ? Color.red : Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
 
         if (currentDoorInstance != null)
         {
