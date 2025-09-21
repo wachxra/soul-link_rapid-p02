@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
 
     public Vector3 startPosition;
 
+    public static int totalShardsCollected = 0;
+
     private void Start()
     {
         currentLife = maxLife;
@@ -28,11 +30,19 @@ public class PlayerHealth : MonoBehaviour
     public void ResetLife()
     {
         currentLife = maxLife;
+
+        shardCount = 0;
+        totalShardsCollected = 0;
     }
 
     public void CollectShard()
     {
+        if (totalShardsCollected >= shardToLife)
+            return;
+
         shardCount++;
+        totalShardsCollected++;
+
         if (shardCount >= shardToLife)
         {
             AddLife(1);

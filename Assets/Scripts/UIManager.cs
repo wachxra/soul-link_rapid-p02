@@ -26,6 +26,7 @@ public class HeartUIManager : MonoBehaviour
 
         if (playerHealth.currentLife <= 0)
         {
+            playerHealth.ResetLife();
             SceneManager.LoadScene(gameOverSceneName);
         }
     }

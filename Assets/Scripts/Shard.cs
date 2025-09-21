@@ -18,6 +18,9 @@ public class Shard : MonoBehaviour
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
+                if (PlayerHealth.totalShardsCollected >= playerHealth.shardToLife)
+                    return;
+
                 playerHealth.CollectShard();
 
                 if (textPrefab != null)

@@ -5,7 +5,6 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
-    /*public float gravityModifier;*/
 
     private bool isFacingRight = true;
     private Rigidbody2D rb;
@@ -20,10 +19,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        /*rb.mass = 1f;
-        Physics.gravity = new Vector3(0, -9.81f, 0);
-        Physics.gravity *= gravityModifier;*/
     }
 
     private void Update()
