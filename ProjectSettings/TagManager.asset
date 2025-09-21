@@ -19,8 +19,8 @@ TagManager:
   - Player
   - Spirit
   - Box
-  - PlayerView
-  - SpiritView
+  - Boundary
+  - 
   - 
   - 
   - 

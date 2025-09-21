@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class SpiritController : MonoBehaviour
@@ -15,8 +15,13 @@ public class SpiritController : MonoBehaviour
     [Header("Camera")]
     public CameraFollowPlayer cameraFollow;
 
+    [Header("Bounce Settings")]
+    public float bounceForce = 5f;
+    public float bounceDamping = 0.9f;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
+    private Vector2 bounceVelocity;
 
     private bool isPossessing = false;
     private GameObject possessedBox;
@@ -68,9 +73,34 @@ public class SpiritController : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isPossessing)
-            rb.linearVelocity = moveInput.normalized * moveSpeed;
+        {
+            Vector2 moveDir = moveInput.normalized;
+            float moveStep = moveSpeed * Time.fixedDeltaTime;
+            Vector2 proposedPos = rb.position + moveDir * moveStep;
+
+            int boundaryMask = LayerMask.GetMask("Boundary");
+            Collider2D hit = Physics2D.OverlapCircle(proposedPos, 0.2f, boundaryMask);
+
+            if (hit == null)
+            {
+                rb.MovePosition(proposedPos);
+            }
+            else
+            {
+                Vector2 collisionNormal = (rb.position - (Vector2)hit.ClosestPoint(rb.position)).normalized;
+                bounceVelocity = collisionNormal * bounceForce;
+            }
+
+            if (bounceVelocity.magnitude > 0.01f)
+            {
+                rb.MovePosition(rb.position + bounceVelocity * Time.fixedDeltaTime);
+                bounceVelocity *= bounceDamping;
+            }
+        }
         else
+        {
             rb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void PossessBox(GameObject box)
