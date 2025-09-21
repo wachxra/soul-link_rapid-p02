@@ -109,6 +109,10 @@ public class SpiritController : MonoBehaviour
         possessedBox = box;
         HideSpirit();
 
+        SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
+
+        if (sceneManager != null) sceneManager.SetSpiritMode(true);
+
         if (cameraFollow != null)
             cameraFollow.player = possessedBox.transform;
     }
@@ -157,6 +161,9 @@ public class SpiritController : MonoBehaviour
 
             if (cameraFollow != null)
                 cameraFollow.player = this.transform;
+
+            SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
+            if (sceneManager != null) sceneManager.SetSpiritMode(false);
         }
     }
 

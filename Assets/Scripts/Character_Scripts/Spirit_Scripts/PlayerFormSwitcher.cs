@@ -14,6 +14,9 @@ public class PlayerFormSwitcher : MonoBehaviour
     [Header("Camera")]
     public CameraFollowPlayer cameraFollow;
 
+    [Header("Spirit Scene")]
+    public SpiritSceneManager spiritScene;
+
     private GameObject spiritInstance;
     private bool isInSpirit = false;
 
@@ -31,6 +34,9 @@ public class PlayerFormSwitcher : MonoBehaviour
         }
 
         UpdateAllDoorsVisual(false);
+
+        if (spiritScene != null)
+            spiritScene.SetSpiritMode(false);
     }
 
     private void Update()
@@ -56,6 +62,13 @@ public class PlayerFormSwitcher : MonoBehaviour
         spiritCtrl.boxMoveSpeed = boxMoveSpeed;
         spiritCtrl.cameraFollow = cameraFollow;
 
+        if (spiritScene != null)
+        {
+            spiritScene.spirit = spiritInstance.transform;
+            spiritScene.hostBody = this.transform;
+            spiritScene.SetSpiritMode(true);
+        }
+
         isInSpirit = true;
 
         GetComponent<PlayerController>().enabled = false;
@@ -80,6 +93,12 @@ public class PlayerFormSwitcher : MonoBehaviour
             cameraFollow.player = this.transform;
 
         UpdateAllDoorsVisual(false);
+
+        if (spiritScene != null)
+        {
+            spiritScene.SetSpiritMode(false);
+            spiritScene.spirit = null;
+        }
     }
 
     private void UpdateAllDoorsVisual(bool isSpirit)
