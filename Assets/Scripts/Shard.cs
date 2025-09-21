@@ -9,6 +9,8 @@ public class Shard : MonoBehaviour
     public Vector3 textScale = Vector3.one * 0.1f;
     public float textDuration = 2f;
 
+    private static GameObject currentText; // เพิ่มตรงนี้
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -20,16 +22,18 @@ public class Shard : MonoBehaviour
 
                 if (textPrefab != null)
                 {
-                    GameObject textObj = Instantiate(textPrefab, collision.transform.position + textOffset, Quaternion.identity);
-                    textObj.transform.rotation = Quaternion.identity;
-                    textObj.transform.localScale = textScale;
+                    if (currentText != null) Destroy(currentText); // ลบ text เก่าก่อน
 
-                    var textMesh = textObj.GetComponent<TextMeshPro>();
+                    currentText = Instantiate(textPrefab, collision.transform.position + textOffset, Quaternion.identity);
+                    currentText.transform.rotation = Quaternion.identity;
+                    currentText.transform.localScale = textScale;
+
+                    var textMesh = currentText.GetComponent<TextMeshPro>();
                     if (textMesh != null)
                         textMesh.text = $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards";
 
-                    textObj.AddComponent<FollowPlayer>().target = collision.transform;
-                    Destroy(textObj, textDuration);
+                    currentText.AddComponent<FollowPlayer>().target = collision.transform;
+                    Destroy(currentText, textDuration);
                 }
 
                 Destroy(gameObject);

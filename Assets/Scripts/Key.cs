@@ -13,7 +13,7 @@ public class Key : MonoBehaviour
     public Vector3 textScale = Vector3.one * 0.1f;
     [TextArea] public string pickupMessage = "Collected Key!";
 
-    private static GameObject currentText;
+    private static GameObject currentText; // ใช้ตัวเดียวกับ Shard
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -26,14 +26,13 @@ public class Key : MonoBehaviour
 
                 if (textPrefab != null)
                 {
-                    if (currentText != null) Destroy(currentText);
+                    if (currentText != null) Destroy(currentText); // ลบ text เก่าก่อน
 
                     currentText = Instantiate(textPrefab, other.transform.position + textOffset, Quaternion.identity);
-
                     currentText.transform.rotation = Quaternion.identity;
                     currentText.transform.localScale = textScale;
 
-                    var textMesh = currentText.GetComponent<TextMeshProUGUI>();
+                    var textMesh = currentText.GetComponent<TextMeshPro>(); // เปลี่ยนเป็น TextMeshPro
                     if (textMesh != null)
                         textMesh.text = pickupMessage;
 
