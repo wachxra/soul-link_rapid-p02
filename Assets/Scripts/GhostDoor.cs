@@ -79,7 +79,6 @@ public class GhostDoor : MonoBehaviour
         }
     }
 
-
     public void UpdateDoorVisualForViewer(bool isSpirit)
     {
         if (sr == null) return;
