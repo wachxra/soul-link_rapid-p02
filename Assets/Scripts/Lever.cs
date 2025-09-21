@@ -22,7 +22,7 @@ public class Lever : MonoBehaviour
 
     [Header("UI")]
     public GameObject promptTextPrefab;
-    public float textOffset = 1.5f;
+    public float textOffset = 2.5f;
 
     private GameObject promptTextInstance;
     private bool playerNearby = false;

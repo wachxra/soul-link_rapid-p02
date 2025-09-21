@@ -80,17 +80,27 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
-
     public void BackFromSettings()
     {
         if (settingsPanel != null)
             settingsPanel.SetActive(false);
     }
 
+    private void ResetGameData()
+    {
+        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
+        if (player != null)
+        {
+            player.ResetLife();
+            player.shardCount = 0;
+        }
+    }
+
     public void Retry(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName)) return;
 
+        ResetGameData();
         Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
         GameIsPaused = false;
@@ -100,11 +110,11 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(sceneName)) return;
 
+        ResetGameData();
         Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
         GameIsPaused = false;
     }
-
 
     public void ExitGame()
     {
