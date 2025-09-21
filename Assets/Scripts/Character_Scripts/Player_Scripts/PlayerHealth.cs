@@ -14,6 +14,10 @@ public class PlayerHealth : MonoBehaviour
 
     public static int totalShardsCollected = 0;
 
+    [Header("Damage Settings")]
+    public float damageCooldown = 1f;
+    private float lastDamageTime = -999f;
+
     private void Start()
     {
         currentLife = maxLife;
@@ -22,7 +26,11 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (Time.time - lastDamageTime < damageCooldown) return;
+
         currentLife -= amount;
+        lastDamageTime = Time.time;
+
         if (currentLife < 0)
             currentLife = 0;
     }

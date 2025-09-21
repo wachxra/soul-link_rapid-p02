@@ -17,7 +17,7 @@ public class GhostDoor : MonoBehaviour
     public bool spiritSeesOpen = true;
 
     [Header("Scene Settings")]
-    public string gameOverSceneName = "GameOver";
+    public string gameOverSceneName = "GameOver_Scene";
 
     [Header("Detection Settings")]
     public LayerMask obstacleLayer;
@@ -68,8 +68,31 @@ public class GhostDoor : MonoBehaviour
                 health.TakeDamage(1);
                 damagedThisFrame.Add(health);
 
-                if (health.currentLife > 0 && hit.GetComponent<PlayerHealth>() != null)
-                    hit.transform.position = health.startPosition;
+                if (health.currentLife > 0)
+                {
+                    PlayerHealth directPlayer = hit.GetComponent<PlayerHealth>();
+
+                    if (directPlayer != null)
+                    {
+                        hit.transform.position = health.startPosition;
+                    }
+                    else
+                    {
+                        SpiritController spirit = hit.GetComponent<SpiritController>();
+                        if (spirit != null && spirit.hostBody != null)
+                        {
+                            spirit.hostBody.position = health.startPosition;
+
+                            PlayerFormSwitcher switcher = spirit.hostBody.GetComponent<PlayerFormSwitcher>();
+                            if (switcher != null)
+                            {
+                                switcher.SendMessage("ReturnToBody", SendMessageOptions.DontRequireReceiver);
+                            }
+
+                            Destroy(spirit.gameObject);
+                        }
+                    }
+                }
 
                 if (health.currentLife <= 0)
                 {

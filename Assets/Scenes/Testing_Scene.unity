@@ -4164,7 +4164,7 @@ MonoBehaviour:
     m_Bits: 1024
   detectLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   detectRange: 0.8
 --- !u!61 &1277360827
 BoxCollider2D:
@@ -4927,13 +4927,13 @@ MonoBehaviour:
   isDoorActuallyOpen: 1
   playerSeesOpen: 0
   spiritSeesOpen: 1
-  gameOverSceneName: GameOver
+  gameOverSceneName: GameOver_Scene
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 1024
   detectLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   detectRange: 0.8
 --- !u!212 &1515658664
 SpriteRenderer:
