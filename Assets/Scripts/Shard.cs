@@ -28,19 +28,29 @@ public class Shard : MonoBehaviour
 
         if (playerHealth != null)
         {
-            if (PlayerHealth.totalShardsCollected >= playerHealth.shardToLife)
-                return;
+            bool willGainLife = (playerHealth.shardCount + 1 >= playerHealth.shardToLife);
 
             playerHealth.CollectShard();
 
             if (TextPopupManager.Instance != null)
             {
+                string message;
+
+                if (willGainLife)
+                {
+                    message = "Life Point +1";
+                }
+                else
+                {
+                    message = $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards";
+                }
+
                 TextPopupManager.Instance.ShowText(
                     textPrefab,
                     collision.transform,
                     textOffset,
                     textScale,
-                    $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards",
+                    message,
                     textDuration
                 );
             }
