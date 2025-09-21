@@ -1538,6 +1538,7 @@ GameObject:
   - component: {fileID: 416514907}
   - component: {fileID: 416514906}
   - component: {fileID: 416514905}
+  - component: {fileID: 416514909}
   m_Layer: 10
   m_Name: Box
   m_TagString: Box
@@ -1571,7 +1572,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &416514906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1664,7 +1665,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6464826, g: 1, b: 0.3915094, a: 1}
   m_FlipX: 0
@@ -1685,12 +1686,24 @@ Transform:
   m_GameObject: {fileID: 416514904}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.15, y: -3.21, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 24.4, y: -2.55, z: 0}
+  m_LocalScale: {x: 2.3154178, y: 2.3154178, z: 2.3154178}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &416514909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416514904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921b4f1da3836f642be272744cdde8c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoxReset
 --- !u!1 &447059823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,7 +2832,7 @@ MonoBehaviour:
   eyesClosedPrefab: {fileID: 8111095489168062100, guid: dd0ffaef4a18bcd419b284e9b13bcaa6, type: 3}
   switchInterval: 2
   alwaysOpenEyes: 0
-  detectRange: 2
+  detectRange: 0.8
   gameOverSceneName: GameOver_Scene
   obstacleLayer:
     serializedVersion: 2
@@ -5080,7 +5093,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_FlipX: 0
@@ -5315,12 +5328,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 211235549}
     m_Modifications:
     - target: {fileID: 1477164396804258713, guid: 8f94e9f746054bf43872f01d02920116, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6584375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477164396804258713, guid: 8f94e9f746054bf43872f01d02920116, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.2945313
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477164396804258713, guid: 8f94e9f746054bf43872f01d02920116, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.05
       objectReference: {fileID: 0}
     - target: {fileID: 1477164396804258713, guid: 8f94e9f746054bf43872f01d02920116, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.88643
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1477164396804258713, guid: 8f94e9f746054bf43872f01d02920116, type: 3}
       propertyPath: m_LocalPosition.z

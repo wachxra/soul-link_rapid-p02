@@ -72,7 +72,6 @@ public class GhostDoor : MonoBehaviour
     {
         if (!isEyesOpen) return;
 
-        // หา candidate ทั้งหมดใน detect range
         Collider2D[] potentialTargets = Physics2D.OverlapCircleAll(transform.position, detectRange, detectLayer);
 
         foreach (Collider2D hit in potentialTargets)
@@ -90,18 +89,14 @@ public class GhostDoor : MonoBehaviour
 
             if (health != null && !damagedThisFrame.Contains(health))
             {
-                // ตรวจ line of sight
                 Vector2 dir = (hit.transform.position - transform.position).normalized;
                 float distance = Vector2.Distance(transform.position, hit.transform.position);
-
                 RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, distance, obstacleLayer);
                 if (rayHit.collider != null)
                 {
-                    // มี obstacle ขวาง → ข้าม target นี้
                     continue;
                 }
 
-                // ไม่มี obstacle → ทำดาเมจ
                 health.TakeDamage(1);
                 damagedThisFrame.Add(health);
 
@@ -112,12 +107,23 @@ public class GhostDoor : MonoBehaviour
                 }
                 else
                 {
+                    BoxReset[] boxes = GameObject.FindObjectsByType<BoxReset>(FindObjectsSortMode.None);
+                    foreach (var box in boxes)
+                    {
+                        box.ResetPosition();
+                    }
+
                     SceneManager.LoadScene(gameOverSceneName);
+                }
+
+                BoxReset[] allBoxes = GameObject.FindObjectsByType<BoxReset>(FindObjectsSortMode.None);
+                foreach (var box in allBoxes)
+                {
+                    box.ResetPosition();
                 }
             }
         }
     }
-
 
     private void UpdateDoorCollider()
     {
