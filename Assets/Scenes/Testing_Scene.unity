@@ -3170,7 +3170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234ae8aded3099488a63677e396acbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpiritSceneManager
-  minDarknessAmount: 0.379
+  minDarknessAmount: 0.85
   maxDarknessAmount: 1
   glowColor: {r: 0, g: 1, b: 1, a: 1}
   mainCamera: {fileID: 1695603849}
