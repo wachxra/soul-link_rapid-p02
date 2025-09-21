@@ -29,6 +29,8 @@ public class PlayerFormSwitcher : MonoBehaviour
             if (boxCol != null)
                 Physics2D.IgnoreCollision(playerCol, boxCol, true);
         }
+
+        UpdateAllDoorsVisual(false);
     }
 
     private void Update()
@@ -49,11 +51,9 @@ public class PlayerFormSwitcher : MonoBehaviour
         spiritInstance = Instantiate(spiritPrefab, transform.position, Quaternion.identity);
 
         SpiritController spiritCtrl = spiritInstance.GetComponent<SpiritController>();
-
-        spiritCtrl.hostBody = this.gameObject.transform;
+        spiritCtrl.hostBody = this.transform;
         spiritCtrl.maxRadius = spiritRadius;
         spiritCtrl.boxMoveSpeed = boxMoveSpeed;
-
         spiritCtrl.cameraFollow = cameraFollow;
 
         isInSpirit = true;
@@ -63,6 +63,8 @@ public class PlayerFormSwitcher : MonoBehaviour
 
         if (cameraFollow != null)
             cameraFollow.player = spiritInstance.transform;
+
+        UpdateAllDoorsVisual(true);
     }
 
     private void ReturnToBody()
@@ -76,5 +78,14 @@ public class PlayerFormSwitcher : MonoBehaviour
 
         if (cameraFollow != null)
             cameraFollow.player = this.transform;
+
+        UpdateAllDoorsVisual(false);
+    }
+
+    private void UpdateAllDoorsVisual(bool isSpirit)
+    {
+        GhostDoor[] doors = GameObject.FindObjectsByType<GhostDoor>(FindObjectsSortMode.None);
+        foreach (var door in doors)
+            door.UpdateDoorVisualForViewer(isSpirit);
     }
 }

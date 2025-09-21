@@ -2,79 +2,50 @@
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class GhostDoor : MonoBehaviour
 {
     [Header("Door Settings")]
-    public GameObject eyesOpenPrefab;
-    public GameObject eyesClosedPrefab;
-    public float switchInterval = 2f;
-    public bool alwaysOpenEyes = false;
-    public float detectRange = 3f;
+    public Sprite eyesOpenSprite;
+    public Sprite eyesClosedSprite;
+
+    [Header("Door Actual State (Damage applies if open)")]
+    public bool isDoorActuallyOpen = true;
+
+    [Header("Visuals")]
+    public bool playerSeesOpen = true;
+    public bool spiritSeesOpen = true;
 
     [Header("Scene Settings")]
     public string gameOverSceneName = "GameOver";
 
-    [Header("Obstacle Detection")]
+    [Header("Detection Settings")]
     public LayerMask obstacleLayer;
     public LayerMask detectLayer;
+    public float detectRange = 3f;
 
-    private GameObject currentDoorInstance;
-    private bool isEyesOpen = false;
-    private float timer;
-
+    private SpriteRenderer sr;
     private HashSet<PlayerHealth> damagedThisFrame = new HashSet<PlayerHealth>();
 
-    private void Start()
+    private void Awake()
     {
-        timer = switchInterval;
-        UpdateDoorPrefab();
+        sr = GetComponent<SpriteRenderer>();
+        UpdateDoorVisualForViewer(false); // player เริ่มแรก
     }
 
     private void Update()
     {
         damagedThisFrame.Clear();
-
-        HandleEyeSwitch();
         HandlePlayerDetection();
-        UpdateDoorCollider();
-    }
-
-    private void HandleEyeSwitch()
-    {
-        if (!alwaysOpenEyes)
-        {
-            timer -= Time.deltaTime;
-            if (timer <= 0f)
-            {
-                isEyesOpen = !isEyesOpen;
-                UpdateDoorPrefab();
-                timer = switchInterval;
-            }
-        }
-        else
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                float distance = Vector2.Distance(transform.position, player.transform.position);
-                bool newEyesOpen = distance <= detectRange;
-
-                if (newEyesOpen != isEyesOpen)
-                {
-                    isEyesOpen = newEyesOpen;
-                    UpdateDoorPrefab();
-                }
-            }
-        }
     }
 
     private void HandlePlayerDetection()
     {
-        if (!isEyesOpen) return;
+        if (!isDoorActuallyOpen) return;
 
-        Collider2D[] potentialTargets = Physics2D.OverlapCircleAll(transform.position, detectRange, detectLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRange, detectLayer);
 
-        foreach (Collider2D hit in potentialTargets)
+        foreach (var hit in hits)
         {
             PlayerHealth health = hit.GetComponent<PlayerHealth>();
 
@@ -82,9 +53,7 @@ public class GhostDoor : MonoBehaviour
             {
                 SpiritController spirit = hit.GetComponent<SpiritController>();
                 if (spirit != null && spirit.hostBody != null)
-                {
                     health = spirit.hostBody.GetComponent<PlayerHealth>();
-                }
             }
 
             if (health != null && !damagedThisFrame.Contains(health))
@@ -92,84 +61,48 @@ public class GhostDoor : MonoBehaviour
                 Vector2 dir = (hit.transform.position - transform.position).normalized;
                 float distance = Vector2.Distance(transform.position, hit.transform.position);
                 RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, distance, obstacleLayer);
-                if (rayHit.collider != null)
-                {
-                    continue;
-                }
+                if (rayHit.collider != null) continue;
 
                 health.TakeDamage(1);
                 damagedThisFrame.Add(health);
 
-                if (health.currentLife > 0)
-                {
-                    if (hit.GetComponent<PlayerHealth>() != null)
-                        hit.transform.position = health.startPosition;
-                }
-                else
-                {
-                    BoxReset[] boxes = GameObject.FindObjectsByType<BoxReset>(FindObjectsSortMode.None);
-                    foreach (var box in boxes)
-                    {
-                        box.ResetPosition();
-                    }
+                if (health.currentLife > 0 && hit.GetComponent<PlayerHealth>() != null)
+                    hit.transform.position = health.startPosition;
 
+                if (health.currentLife <= 0)
+                {
+                    ResetAllBoxes();
                     SceneManager.LoadScene(gameOverSceneName);
                 }
-
-                BoxReset[] allBoxes = GameObject.FindObjectsByType<BoxReset>(FindObjectsSortMode.None);
-                foreach (var box in allBoxes)
-                {
-                    box.ResetPosition();
-                }
             }
         }
     }
 
-    private void UpdateDoorCollider()
+    public void UpdateDoorVisualForViewer(bool isSpirit)
     {
-        if (currentDoorInstance != null)
-        {
-            Collider2D doorCollider = currentDoorInstance.GetComponent<Collider2D>();
-            if (doorCollider != null)
-            {
-                doorCollider.enabled = !isEyesOpen || IsObstacleBlocking();
-            }
-        }
+        if (sr == null) return;
+
+        if (isSpirit)
+            sr.sprite = spiritSeesOpen ? eyesOpenSprite : eyesClosedSprite;
+        else
+            sr.sprite = playerSeesOpen ? eyesOpenSprite : eyesClosedSprite;
     }
 
-    private void UpdateDoorPrefab()
+    private void ResetAllBoxes()
     {
-        if (currentDoorInstance != null)
-            Destroy(currentDoorInstance);
-
-        GameObject prefabToInstantiate = isEyesOpen ? eyesOpenPrefab : eyesClosedPrefab;
-
-        if (prefabToInstantiate != null)
-        {
-            currentDoorInstance = Instantiate(prefabToInstantiate, transform.position, Quaternion.identity);
-            currentDoorInstance.transform.SetParent(transform);
-        }
-    }
-
-    private bool IsObstacleBlocking()
-    {
-        Collider2D hit = Physics2D.OverlapBox(transform.position, Vector2.one, 0f, obstacleLayer);
-        return hit != null;
+        BoxReset[] boxes = GameObject.FindObjectsByType<BoxReset>(FindObjectsSortMode.None);
+        foreach (var box in boxes)
+            box.ResetPosition();
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = alwaysOpenEyes ? Color.red : Color.cyan;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, detectRange);
+    }
 
-        if (currentDoorInstance != null)
-        {
-            Collider2D col = currentDoorInstance.GetComponent<Collider2D>();
-            if (col != null)
-            {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireCube(col.bounds.center, col.bounds.size);
-            }
-        }
+    public bool IsActuallyOpen()
+    {
+        return isDoorActuallyOpen;
     }
 }
