@@ -24,7 +24,7 @@ public class Shard : MonoBehaviour
                     textObj.transform.rotation = Quaternion.identity;
                     textObj.transform.localScale = textScale;
 
-                    var textMesh = textObj.GetComponent<TextMeshProUGUI>();
+                    var textMesh = textObj.GetComponent<TextMeshPro>();
                     if (textMesh != null)
                         textMesh.text = $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards";
 
