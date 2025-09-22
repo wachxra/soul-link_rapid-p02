@@ -75,6 +75,7 @@ public class Door : MonoBehaviour
             {
                 playerInventory.UseKey(keyID);
                 ToggleDoor();
+                AudioManager.Instance.PlaySFX("normalDoorToggle");
                 HidePrompt();
             }
             else
@@ -85,6 +86,8 @@ public class Door : MonoBehaviour
                     if (textMesh != null)
                         textMesh.text = "Need the correct key!";
                 }
+
+                AudioManager.Instance.PlaySFX("doorLocked");
             }
         }
     }
