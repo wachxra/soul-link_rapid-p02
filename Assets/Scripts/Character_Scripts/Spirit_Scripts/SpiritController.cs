@@ -134,6 +134,15 @@ public class SpiritController : MonoBehaviour
             float move = Input.GetAxisRaw("Horizontal");
             Vector2 proposedPos = boxRb.position + new Vector2(move * boxMoveSpeed * Time.deltaTime, 0);
 
+            if (Mathf.Abs(move) > 0.01f)
+            {
+                AudioManager.Instance.PlayLoopSFX("boxMoving");
+            }
+            else
+            {
+                AudioManager.Instance.StopLoopSFX("boxMoving");
+            }
+
             if (hostBody != null)
             {
                 float dist = Vector2.Distance(proposedPos, hostBody.position);

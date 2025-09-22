@@ -23,6 +23,7 @@ public class Key : MonoBehaviour
             if (inventory != null)
             {
                 inventory.CollectKey(keyID);
+                AudioManager.Instance.PlaySFX("keyCollected");
 
                 if (TextPopupManager.Instance != null)
                 {

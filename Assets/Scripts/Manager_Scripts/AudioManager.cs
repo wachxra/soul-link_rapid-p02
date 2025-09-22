@@ -165,7 +165,6 @@ public class AudioManager : MonoBehaviour
         UpdateUI();
     }
 
-
     private void UpdateUI()
     {
         if (bgSlider != null)
@@ -194,6 +193,32 @@ public class AudioManager : MonoBehaviour
             {
                 sfx.volume = sfxVolume;
                 sfx.Play();
+            }
+        }
+    }
+
+    public void PlayLoopSFX(string key)
+    {
+        if (sfxDict.TryGetValue(key, out AudioSource sfx))
+        {
+            if (sfx != null)
+            {
+                sfx.volume = sfxVolume;
+                sfx.loop = true;
+                if (!sfx.isPlaying)
+                    sfx.Play();
+            }
+        }
+    }
+
+    public void StopLoopSFX(string key)
+    {
+        if (sfxDict.TryGetValue(key, out AudioSource sfx))
+        {
+            if (sfx != null && sfx.isPlaying)
+            {
+                sfx.Stop();
+                sfx.loop = false;
             }
         }
     }
