@@ -27,7 +27,7 @@ public class SpiritSceneManager : MonoBehaviour
     private Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
     private bool isSpirit = false;
 
-    void Start()
+    void Awake()
     {
         allSprites = GameObject.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None);
         foreach (var sr in allSprites)
@@ -35,7 +35,10 @@ public class SpiritSceneManager : MonoBehaviour
             if (sr != null && !originalColors.ContainsKey(sr))
                 originalColors[sr] = sr.color;
         }
+    }
 
+    void Start()
+    {
         if (mainCamera != null)
             mainCamera.backgroundColor = humanBgColor;
     }
@@ -100,11 +103,14 @@ public class SpiritSceneManager : MonoBehaviour
 
         if (!isSpirit)
         {
-            foreach (var sr in allSprites)
+            if (allSprites != null)
             {
-                if (sr == null) continue;
-                if (originalColors.ContainsKey(sr))
-                    sr.color = originalColors[sr];
+                foreach (var sr in allSprites)
+                {
+                    if (sr == null) continue;
+                    if (originalColors.ContainsKey(sr))
+                        sr.color = originalColors[sr];
+                }
             }
 
             if (mainCamera != null)

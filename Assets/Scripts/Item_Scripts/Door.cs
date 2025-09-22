@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -8,11 +8,11 @@ public class Door : MonoBehaviour
     public string keyID;
     public bool isSceneDoor = false;
     public string sceneName;
-    public float moveAmount = 3f;
-    public float moveSpeed = 2f;
 
     [Header("Reference")]
     public GameObject mainDoor;
+    public Sprite closedSprite;
+    public Sprite openSprite;
 
     [Header("UI")]
     public GameObject promptTextPrefab;
@@ -22,17 +22,32 @@ public class Door : MonoBehaviour
     private bool playerNearby = false;
     private PlayerInventory playerInventory;
     private bool isOpen = false;
+    private SpriteRenderer doorRenderer;
+    private Collider2D doorCollider;
 
     private void Start()
     {
         if (mainDoor == null)
             Debug.LogWarning("Assign Main Door GameObject in Inspector");
+
+        if (mainDoor != null)
+        {
+            doorRenderer = mainDoor.GetComponent<SpriteRenderer>();
+            doorCollider = mainDoor.GetComponent<Collider2D>();
+        }
+
+        if (doorRenderer != null && closedSprite != null)
+            doorRenderer.sprite = closedSprite;
+
+        if (doorCollider != null)
+            doorCollider.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isOpen) return;
         if (!other.CompareTag("Player")) return;
+
+        if (isOpen) return;
 
         playerNearby = true;
         playerInventory = other.GetComponent<PlayerInventory>();
@@ -59,7 +74,7 @@ public class Door : MonoBehaviour
             if (playerInventory.HasKey(keyID))
             {
                 playerInventory.UseKey(keyID);
-                OpenDoor();
+                ToggleDoor();
                 HidePrompt();
             }
             else
@@ -81,7 +96,6 @@ public class Door : MonoBehaviour
         if (promptTextInstance != null) Destroy(promptTextInstance);
 
         promptTextInstance = Instantiate(promptTextPrefab, transform.position + Vector3.up * textOffset, Quaternion.identity);
-
         promptTextInstance.transform.SetParent(null);
 
         TextMesh textMesh = promptTextInstance.GetComponent<TextMesh>();
@@ -100,7 +114,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    private void OpenDoor()
+    private void ToggleDoor()
     {
         if (isSceneDoor)
         {
@@ -111,19 +125,37 @@ public class Door : MonoBehaviour
         }
         else
         {
-            if (mainDoor != null)
-                StartCoroutine(MoveDoor());
-        }
-        isOpen = true;
-    }
+            if (doorRenderer == null || doorCollider == null) return;
 
-    private IEnumerator MoveDoor()
-    {
-        Vector3 targetPos = mainDoor.transform.position + new Vector3(0, moveAmount, 0);
-        while (Vector3.Distance(mainDoor.transform.position, targetPos) > 0.01f)
-        {
-            mainDoor.transform.position = Vector3.MoveTowards(mainDoor.transform.position, targetPos, moveSpeed * Time.deltaTime);
-            yield return null;
+            isOpen = !isOpen;
+
+            if (isOpen && openSprite != null)
+            {
+                doorRenderer.sprite = openSprite;
+                doorCollider.enabled = false;
+
+                HidePrompt();
+
+                if (promptTextPrefab != null)
+                {
+                    GameObject unlockedText = Instantiate(
+                        promptTextPrefab,
+                        transform.position + Vector3.up * textOffset,
+                        Quaternion.identity
+                    );
+
+                    var textMesh = unlockedText.GetComponent<TextMesh>();
+                    if (textMesh != null)
+                        textMesh.text = "Unlocked!";
+
+                    Destroy(unlockedText, 1.5f);
+                }
+            }
+            else if (!isOpen && closedSprite != null)
+            {
+                doorRenderer.sprite = closedSprite;
+                doorCollider.enabled = true;
+            }
         }
     }
 }

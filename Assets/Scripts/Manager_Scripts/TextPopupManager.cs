@@ -12,8 +12,10 @@ public class TextPopupManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void ShowText(GameObject prefab, Transform target, Vector3 offset, Vector3 scale, string message, float duration)
+    public void ShowText(GameObject prefab, Transform target, Vector3 offset, Vector3 scale, string message, float duration, bool canShow = true)
     {
+        if (!canShow) return;
+
         if (currentText != null) Destroy(currentText);
 
         currentText = Instantiate(prefab, target.position + offset, Quaternion.identity);

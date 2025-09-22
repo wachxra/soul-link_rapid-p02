@@ -4052,7 +4052,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: bd57ee73925f48d44a0cb4184e164787, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -4158,10 +4158,62 @@ MonoBehaviour:
   sceneBGMs:
   - sceneName: MainMenu_Scene
     bgmSource: {fileID: 2129266245}
+  - sceneName: Level01
+    bgmSource: {fileID: 2129266245}
+  - sceneName: Level02
+    bgmSource: {fileID: 2129266245}
+  - sceneName: Level03
+    bgmSource: {fileID: 2129266245}
+  - sceneName: Level04
+    bgmSource: {fileID: 2129266245}
+  - sceneName: EndCredit_Scene
+    bgmSource: {fileID: 2129266245}
+  - sceneName: GameOver_Scene
+    bgmSource: {fileID: 2129266245}
+  - sceneName: IntroCutscene_Scene
+    bgmSource: {fileID: 2129266245}
   - sceneName: Testing_Scene
     bgmSource: {fileID: 2129266245}
   sfxList:
-  - key: itemCollected
+  - key: spiritOn
+    sfxSource: {fileID: 2129266247}
+  - key: spiritOff
+    sfxSource: {fileID: 2129266247}
+  - key: spiritHaunting
+    sfxSource: {fileID: 2129266247}
+  - key: spiritHitBoundary
+    sfxSource: {fileID: 2129266247}
+  - key: spiritPossesBox
+    sfxSource: {fileID: 2129266247}
+  - key: keyCollected
+    sfxSource: {fileID: 2129266247}
+  - key: shardCollected
+    sfxSource: {fileID: 2129266247}
+  - key: moveToNextLevel
+    sfxSource: {fileID: 2129266247}
+  - key: normalDoorToggle
+    sfxSource: {fileID: 2129266247}
+  - key: movingDoor
+    sfxSource: {fileID: 2129266247}
+  - key: movingDoor
+    sfxSource: {fileID: 2129266247}
+  - key: boxDrop
+    sfxSource: {fileID: 2129266247}
+  - key: boxMoving
+    sfxSource: {fileID: 2129266247}
+  - key: walking
+    sfxSource: {fileID: 2129266247}
+  - key: jumpOn
+    sfxSource: {fileID: 2129266247}
+  - key: jumpOff
+    sfxSource: {fileID: 2129266247}
+  - key: clicking_UI_SFX
+    sfxSource: {fileID: 2129266247}
+  - key: playerTakeDamage
+    sfxSource: {fileID: 2129266247}
+  - key: spiritTakeDamage
+    sfxSource: {fileID: 2129266247}
+  - key: doorLocked
     sfxSource: {fileID: 2129266247}
   bgMuted: 0
   sfxMuted: 0
