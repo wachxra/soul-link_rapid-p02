@@ -26,13 +26,12 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxisRaw("Horizontal");
 
-        if (isGrounded && Mathf.Abs(moveInput) > 0.01f)
+        if (AudioManager.Instance != null && CompareTag("Player"))
         {
-            AudioManager.Instance.PlayLoopSFX("walking");
-        }
-        else
-        {
-            AudioManager.Instance.StopLoopSFX("walking");
+            if (isGrounded && Mathf.Abs(moveInput) > 0.01f)
+                AudioManager.Instance.PlayLoopSFX("walking");
+            else
+                AudioManager.Instance.StopLoopSFX("walking");
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)

@@ -20,8 +20,12 @@ public class PlayerFormSwitcher : MonoBehaviour
     private GameObject spiritInstance;
     private bool isInSpirit = false;
 
+    private UIManager ui;
+
     void Start()
     {
+        ui = FindAnyObjectByType<UIManager>();
+
         Collider2D playerCol = GetComponent<Collider2D>();
         Collider2D[] boxCols = GameObject.FindGameObjectsWithTag("Box")
                                        .Select(b => b.GetComponent<Collider2D>())
@@ -52,6 +56,8 @@ public class PlayerFormSwitcher : MonoBehaviour
 
     private void BecomeSpirit()
     {
+        ui?.SetForm(true);
+
         if (spiritPrefab == null) return;
 
         spiritInstance = Instantiate(spiritPrefab, transform.position, Quaternion.identity);
@@ -82,6 +88,8 @@ public class PlayerFormSwitcher : MonoBehaviour
 
     private void ReturnToBody()
     {
+        ui?.SetForm(false);
+
         if (spiritInstance != null)
             Destroy(spiritInstance);
 

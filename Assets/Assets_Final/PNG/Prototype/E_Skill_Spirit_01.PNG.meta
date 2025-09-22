@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 8da85161598407248a594751b31f6e6c
+guid: a31529cbcf19e9b47a5e441f78e262f7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8904327360074338662
-    second: LifePoint_0
-  - first:
-      213: 242922625786497849
-    second: LifePoint_1
-  - first:
-      213: -4805414470882910269
-    second: LifePoint_2
-  - first:
-      213: -2539969727319241649
-    second: LifePoint_3
+      213: 565466065705132386
+    second: E_Skill_Spirit_01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LifePoint_0
+      name: E_Skill_Spirit_01_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 11
-        width: 94
-        height: 93
+        x: 239
+        y: 251
+        width: 1591
+        height: 1648
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 661d50d8e86829b70800000000000000
-      internalID: 8904327360074338662
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LifePoint_1
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 102
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 93bc8e157d80f5300800000000000000
-      internalID: 242922625786497849
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LifePoint_2
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 102
-        width: 15
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cf9088bffcbf4db0800000000000000
-      internalID: -4805414470882910269
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LifePoint_3
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 97
-        width: 19
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f4c04e68df630ccd0800000000000000
-      internalID: -2539969727319241649
+      spriteID: 26164ea0460f8d700800000000000000
+      internalID: 565466065705132386
       vertices: []
       indices: 
       edges: []
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LifePoint_0: 8904327360074338662
-      LifePoint_1: 242922625786497849
-      LifePoint_2: -4805414470882910269
-      LifePoint_3: -2539969727319241649
+      E_Skill_Spirit_01_0: 565466065705132386
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

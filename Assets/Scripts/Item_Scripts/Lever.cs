@@ -15,20 +15,19 @@ public class LeverPlatform
 
 public class Lever : MonoBehaviour
 {
+    private UIManager ui;
+
     public enum MoveDirection { Horizontal, Vertical }
 
     [Header("Platform Settings")]
     public LeverPlatform[] leverPlatforms;
 
-    [Header("UI")]
-    public GameObject promptTextPrefab;
-    public float textOffset = 2.5f;
-
-    private GameObject promptTextInstance;
     private bool playerNearby = false;
 
     private void Start()
     {
+        ui = FindAnyObjectByType<UIManager>();
+
         foreach (var lp in leverPlatforms)
         {
             if (lp.platform != null)
@@ -41,7 +40,7 @@ public class Lever : MonoBehaviour
         if (!other.CompareTag("Player") && !other.CompareTag("Spirit")) return;
 
         playerNearby = true;
-        ShowPrompt();
+        ui?.SetContext("Lever");
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -49,12 +48,15 @@ public class Lever : MonoBehaviour
         if (!other.CompareTag("Player") && !other.CompareTag("Spirit")) return;
 
         playerNearby = false;
-        HidePrompt();
+        ui?.SetContext("IdleSpirit");
     }
 
     private void Update()
     {
         if (!playerNearby) return;
+
+        if (ui != null)
+            ui.SetContext("Lever");
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -73,30 +75,7 @@ public class Lever : MonoBehaviour
         }
     }
 
-    private void ShowPrompt()
-    {
-        if (promptTextPrefab == null) return;
-
-        if (promptTextInstance != null) Destroy(promptTextInstance);
-
-        promptTextInstance = Instantiate(promptTextPrefab, transform.position + Vector3.up * textOffset, Quaternion.identity);
-        promptTextInstance.transform.SetParent(null);
-
-        TextMesh textMesh = promptTextInstance.GetComponent<TextMesh>();
-        if (textMesh != null)
-            textMesh.text = "E to interact";
-    }
-
-    private void HidePrompt()
-    {
-        if (promptTextInstance != null)
-        {
-            Destroy(promptTextInstance);
-            promptTextInstance = null;
-        }
-    }
-
-    private void ActivateLever()
+    public void ActivateLever()
     {
         foreach (var lp in leverPlatforms)
         {
@@ -124,8 +103,6 @@ public class Lever : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
-
-        HidePrompt();
     }
 
     private IEnumerator MovePlatform(LeverPlatform lp, Vector3 targetPos)

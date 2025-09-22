@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -93,6 +93,19 @@ public class AudioManager : MonoBehaviour
     {
         PlayBGMForScene(scene.name);
         UpdateUI();
+
+        StopLoopSFX("walking");
+        StopLoopSFX("boxMoving");
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void PlayBGMForScene(string sceneName)

@@ -29,8 +29,12 @@ public class SpiritController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D col;
 
+    private UIManager ui;
+
     private void Start()
     {
+        ui = FindAnyObjectByType<UIManager>();
+
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
@@ -49,12 +53,48 @@ public class SpiritController : MonoBehaviour
         {
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-            if (Input.GetKeyDown(KeyCode.E))
+            Collider2D nearbyInteractable = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Box", "Lever"));
+            if (nearbyInteractable != null)
             {
-                Collider2D hit = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Box"));
-                if (hit != null)
+                if (nearbyInteractable.CompareTag("Box"))
                 {
-                    PossessBox(hit.gameObject);
+                    ui?.SetContext("Box");
+                }
+                else if (nearbyInteractable.CompareTag("Lever"))
+                {
+                    ui?.SetContext("Lever");
+                }
+            }
+            else
+            {
+                ui?.SetContext("IdleSpirit");
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && nearbyInteractable != null)
+            {
+                if (nearbyInteractable.CompareTag("Box"))
+                {
+                    PossessBox(nearbyInteractable.gameObject);
+                    ui?.SetContext("Possessing");
+                }
+                else if (nearbyInteractable.CompareTag("Lever"))
+                {
+                    Lever lever = nearbyInteractable.GetComponent<Lever>();
+                    if (lever != null)
+                    {
+                        bool anyMoving = false;
+                        foreach (var lp in lever.leverPlatforms)
+                        {
+                            if (lp.isMoving)
+                            {
+                                anyMoving = true;
+                                break;
+                            }
+                        }
+
+                        if (!anyMoving)
+                            lever.ActivateLever();
+                    }
                 }
             }
         }
@@ -134,13 +174,23 @@ public class SpiritController : MonoBehaviour
             float move = Input.GetAxisRaw("Horizontal");
             Vector2 proposedPos = boxRb.position + new Vector2(move * boxMoveSpeed * Time.deltaTime, 0);
 
-            if (Mathf.Abs(move) > 0.01f)
+            if (isPossessing && possessedBox != null)
             {
-                AudioManager.Instance.PlayLoopSFX("boxMoving");
+                if (Mathf.Abs(move) > 0.01f)
+                {
+                    if (AudioManager.Instance != null)
+                        AudioManager.Instance.PlayLoopSFX("boxMoving");
+                }
+                else
+                {
+                    if (AudioManager.Instance != null)
+                        AudioManager.Instance.StopLoopSFX("boxMoving");
+                }
             }
             else
             {
-                AudioManager.Instance.StopLoopSFX("boxMoving");
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.StopLoopSFX("boxMoving");
             }
 
             if (hostBody != null)
