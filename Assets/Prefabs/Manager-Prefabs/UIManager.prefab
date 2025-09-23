@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8014537081140007646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1405659031293914078}
+  - component: {fileID: 2797661074854273738}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1405659031293914078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014537081140007646}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.91012, y: -1.16505, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2797661074854273738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8014537081140007646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54f49842ff368f9478f33435d3a672f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeartUIManager
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 21300000, guid: c9c91e9ef665a0d4ab75b397cb964050, type: 3}
+  emptyHeart: {fileID: 21300000, guid: f9a5d62b987512b49b848a2ed623c153, type: 3}
+  gameOverSceneName: GameOver_Scene
+  skillEIcon: {fileID: 0}
+  skillFIcon: {fileID: 0}
+  fHumanSprite: {fileID: 21300000, guid: 21d8a9276b3e10845a2c95adda2857bd, type: 3}
+  fSpiritSprite: {fileID: 21300000, guid: c30097b88cf188c44ad55943a1e665a0, type: 3}
+  eHumanIdle: {fileID: 21300000, guid: 4c3101229941619418f2cfbfe9168faa, type: 3}
+  eHumanLever: {fileID: 21300000, guid: da9c13e21df693842afd5b2bba25db10, type: 3}
+  eHumanDoor: {fileID: 21300000, guid: 1cc22e567daca1f49a8bc6d6a6711b0e, type: 3}
+  eSpiritIdle: {fileID: 21300000, guid: 7241ad1935fe2ee4eb2c5f24ac28ea1f, type: 3}
+  eSpiritLever: {fileID: 21300000, guid: 114edcad9750e4a439e2f92292a5e5ca, type: 3}
+  eSpiritPossessBox: {fileID: 21300000, guid: a31529cbcf19e9b47a5e441f78e262f7, type: 3}

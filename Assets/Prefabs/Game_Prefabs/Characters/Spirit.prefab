@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.56, z: 0}
-  m_LocalScale: {x: 0.1338, y: 0.1338, z: 0.1338}
+  m_LocalScale: {x: 0.09960597, y: 0.09960597, z: 0.09960597}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -114,6 +114,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  boxLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &483789608061100134
 Rigidbody2D:
   serializedVersion: 5
@@ -216,3 +219,8 @@ MonoBehaviour:
   maxRadius: 30
   boxMoveSpeed: 5
   cameraFollow: {fileID: 0}
+  bounceForce: 5
+  bounceDamping: 0.9
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3bfc790a47bccf542afca352bc15abda
+guid: 17e51d1b6e8ff12488196098931adab3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6313050116599388571
-    second: Window_On_0
+      213: -7754591849117446826
+    second: GhostWindow_Off_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 30, y: 410, z: 45, w: 370}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Window_On_0
+      name: GhostWindow_Off_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 412
-        width: 1195
-        height: 1021
+        x: 21
+        y: 331
+        width: 1223
+        height: 1035
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 566eadeed5a8368a0800000000000000
-      internalID: -6313050116599388571
+      spriteID: 65d073f7cc7226490800000000000000
+      internalID: -7754591849117446826
       vertices: []
       indices: 
       edges: []
@@ -126,7 +126,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Window_On_0: -6313050116599388571
+      GhostWindow_Off_0: -7754591849117446826
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

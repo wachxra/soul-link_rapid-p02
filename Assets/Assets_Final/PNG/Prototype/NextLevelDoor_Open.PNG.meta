@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 1847e0c7b73180343a30dd26b901d582
+guid: 4147a193ebdd3da4e8e89e5d5b88c830
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6321652660490131468
-    second: Window_Off_0
+      213: 5354692324806248024
+    second: NextLevelDoor_Open_0
+  - first:
+      213: -8855048294404080255
+    second: NextLevelDoor_Open_1
+  - first:
+      213: -6670045254337250755
+    second: NextLevelDoor_Open_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,13 +52,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 30, y: 410, z: 45, w: 370}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Window_Off_0
+      name: NextLevelDoor_Open_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 408
-        width: 1201
-        height: 1028
+        x: 60
+        y: 141
+        width: 842
+        height: 1477
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c08dae5e9950bb750800000000000000
-      internalID: 6321652660490131468
+      spriteID: 856469d8c40bf4a40800000000000000
+      internalID: 5354692324806248024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NextLevelDoor_Open_1
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 487
+        width: 172
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18dbd170e7c8c1580800000000000000
+      internalID: -8855048294404080255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NextLevelDoor_Open_2
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 597
+        width: 136
+        height: 438
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3ab27b3e2d3f63a0800000000000000
+      internalID: -6670045254337250755
       vertices: []
       indices: 
       edges: []
@@ -125,8 +175,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Window_Off_0: 6321652660490131468
+      NextLevelDoor_Open_0: 5354692324806248024
+      NextLevelDoor_Open_1: -8855048294404080255
+      NextLevelDoor_Open_2: -6670045254337250755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
