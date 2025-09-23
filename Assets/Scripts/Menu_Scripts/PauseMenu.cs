@@ -14,7 +14,7 @@ public class PauseMenuManager : MonoBehaviour
 
     [Header("Scene Names")]
     public string mainMenuSceneName = "MainMenu_Scene";
-    public string level1SceneName = "Level01_Scene";
+    public string level1SceneName = "Level01";
 
     [Header("Settings UI Elements")]
     public Slider bgSliderSettings;
@@ -31,6 +31,30 @@ public class PauseMenuManager : MonoBehaviour
 
         if (settingsPanel != null)
             settingsPanel.SetActive(false);
+
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    void Awake()
+    {
+        if (pauseMenuUI != null)
+        {
+            Canvas canvas = pauseMenuUI.GetComponent<Canvas>();
+            if (canvas != null)
+            {
+                canvas.overrideSorting = true;
+                canvas.sortingOrder = 999;
+            }
+        }
+
+        var eventSystems = GameObject.FindObjectsByType<UnityEngine.EventSystems.EventSystem>(FindObjectsSortMode.None);
+
+        if (eventSystems.Length > 1)
+        {
+            for (int i = 1; i < eventSystems.Length; i++)
+                Destroy(eventSystems[i].gameObject);
+        }
     }
 
     private void Update()
@@ -56,7 +80,11 @@ public class PauseMenuManager : MonoBehaviour
     private void Pause()
     {
         if (pauseMenuUI != null)
+        {
             pauseMenuUI.SetActive(true);
+            CanvasGroup cg = pauseMenuUI.GetComponent<CanvasGroup>();
+            if (cg != null) cg.interactable = true;
+        }
 
         Time.timeScale = 0f;
         GameIsPaused = true;
@@ -102,20 +130,28 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(sceneName)) return;
 
+        if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+
         ResetGameData();
         Time.timeScale = 1f;
-        SceneManager.LoadScene(sceneName);
         GameIsPaused = false;
+
+        SceneManager.LoadScene(sceneName);
     }
 
     public void BackToMainMenu(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName)) return;
 
+        if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
+
         ResetGameData();
         Time.timeScale = 1f;
-        SceneManager.LoadScene(sceneName);
         GameIsPaused = false;
+
+        SceneManager.LoadScene(sceneName);
     }
 
     public void ExitGame()

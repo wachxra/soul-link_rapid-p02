@@ -82,17 +82,21 @@ public class PersistentObjectsManager : MonoBehaviour
             var pauseMenu = obj.GetComponent<PauseMenuManager>();
             if (pauseMenu != null)
             {
-                var canvas = GameObject.FindFirstObjectByType<Canvas>();
-                if (canvas != null)
-                {
-                    var panels = canvas.GetComponentsInChildren<Transform>(true);
+                if (pauseMenu.pauseMenuUI == null)
+                    pauseMenu.pauseMenuUI = obj.transform.Find("PauseMenuUI")?.gameObject;
 
-                    foreach (var t in panels)
-                    {
-                        if (t.name == "PauseMenuUI") pauseMenu.pauseMenuUI = t.gameObject;
-                        if (t.name == "SettingsPanel") pauseMenu.settingsPanel = t.gameObject;
-                    }
-                }
+                if (pauseMenu.settingsPanel == null)
+                    pauseMenu.settingsPanel = obj.transform.Find("SettingsPanel")?.gameObject;
+
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.RegisterUI(
+                        pauseMenu.bgSliderSettings,
+                        pauseMenu.sfxSliderSettings,
+                        pauseMenu.bgToggleSettings,
+                        pauseMenu.sfxToggleSettings,
+                        pauseMenu.bgToggleLabelSettings,
+                        pauseMenu.sfxToggleLabelSettings
+                    );
             }
         }
     }
