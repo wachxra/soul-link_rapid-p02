@@ -145,5 +145,11 @@ public class PersistentObjectsManager : MonoBehaviour
     public static void ResetPersistentObjects()
     {
         isInitialized = false;
+        persistentPlayerData = new PlayerData
+        {
+            currentLife = 5,
+            shardCount = 0,
+            totalShardsCollected = 0
+        };
     }
 }

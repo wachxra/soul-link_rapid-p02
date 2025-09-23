@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 945983939}
   - component: {fileID: 945983938}
   m_Layer: 5
-  m_Name: TryAgain_Button
+  m_Name: PlayAgain_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,7 +649,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2027431401}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
-        m_MethodName: Retry
+        m_MethodName: PlayAgain
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

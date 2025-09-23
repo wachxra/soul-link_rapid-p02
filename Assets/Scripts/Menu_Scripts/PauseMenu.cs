@@ -140,6 +140,13 @@ public class PauseMenuManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void PlayAgain(string sceneName)
+    {
+        ResetGameData();
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void BackToMainMenu(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName)) return;

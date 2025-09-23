@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -21,6 +22,12 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Level01" && PersistentObjectsManager.persistentPlayerData == null)
+        {
+            ResetLife();
+        }
     }
 
     private void Awake()
