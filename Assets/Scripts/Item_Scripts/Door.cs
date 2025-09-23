@@ -86,6 +86,9 @@ public class Door : MonoBehaviour
     {
         if (isSceneDoor)
         {
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX("moveToNextLevel");
+
             if (!string.IsNullOrEmpty(sceneName))
                 SceneManager.LoadScene(sceneName);
         }

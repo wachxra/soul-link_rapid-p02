@@ -61,6 +61,10 @@ public class Lever : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             bool anyMoving = false;
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX("leverToggle");
+
             foreach (var lp in leverPlatforms)
             {
                 if (lp.isMoving)
@@ -107,6 +111,8 @@ public class Lever : MonoBehaviour
 
     private IEnumerator MovePlatform(LeverPlatform lp, Vector3 targetPos)
     {
+        AudioManager.Instance?.PlayLoopSFX("movingPlatform");
+
         while (Vector3.Distance(lp.platform.transform.position, targetPos) > 0.01f)
         {
             lp.platform.transform.position = Vector3.MoveTowards(lp.platform.transform.position, targetPos, lp.moveSpeed * Time.deltaTime);
@@ -115,5 +121,7 @@ public class Lever : MonoBehaviour
 
         lp.platform.transform.position = targetPos;
         lp.isMoving = false;
+
+        AudioManager.Instance?.StopLoopSFX("movingPlatform");
     }
 }

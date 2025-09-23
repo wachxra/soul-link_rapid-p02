@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private bool wasGrounded;
+
     private void Update()
     {
         moveInput = Input.GetAxisRaw("Horizontal");
@@ -34,9 +36,11 @@ public class PlayerController : MonoBehaviour
                 AudioManager.Instance.StopLoopSFX("walking");
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded && CompareTag("Player"))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+            AudioManager.Instance?.PlaySFX("jumpOn");
         }
 
         if (moveInput > 0 && !isFacingRight) Flip();
@@ -47,8 +51,16 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)
-                 || Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, boxLayer);
+        bool currentlyGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)
+                                || Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, boxLayer);
+
+        if (!wasGrounded && currentlyGrounded)
+        {
+            AudioManager.Instance?.PlaySFX("jumpOff");
+        }
+
+        wasGrounded = currentlyGrounded;
+        isGrounded = currentlyGrounded;
     }
 
     private void Flip()

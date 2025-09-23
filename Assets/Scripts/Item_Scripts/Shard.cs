@@ -32,6 +32,9 @@ public class Shard : MonoBehaviour
 
             playerHealth.CollectShard();
 
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlaySFX("shardCollected");
+
             if (TextPopupManager.Instance != null)
             {
                 string message;

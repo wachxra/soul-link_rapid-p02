@@ -134,7 +134,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-
     public void SetBGVolume(float volume)
     {
         bgVolume = Mathf.Clamp01(volume);

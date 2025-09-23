@@ -19,6 +19,9 @@ public class SpiritController : MonoBehaviour
     public float bounceForce = 5f;
     public float bounceDamping = 0.9f;
 
+    [Header("Ground Check")]
+    public LayerMask groundLayer;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 bounceVelocity;
@@ -129,6 +132,9 @@ public class SpiritController : MonoBehaviour
             {
                 Vector2 collisionNormal = (rb.position - (Vector2)hit.ClosestPoint(rb.position)).normalized;
                 bounceVelocity = collisionNormal * bounceForce;
+
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.PlaySFX("spiritHitBoundary");
             }
 
             if (bounceVelocity.magnitude > 0.01f)
@@ -149,8 +155,17 @@ public class SpiritController : MonoBehaviour
         possessedBox = box;
         HideSpirit();
 
-        SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlaySFX("spiritPossessBox");
 
+        BoxCollisionHelper helper = possessedBox.GetComponent<BoxCollisionHelper>();
+        if (helper == null)
+        {
+            helper = possessedBox.AddComponent<BoxCollisionHelper>();
+        }
+        helper.Setup(this, groundLayer);
+
+        SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
         if (sceneManager != null) sceneManager.SetSpiritMode(true);
 
         if (cameraFollow != null)
@@ -173,25 +188,6 @@ public class SpiritController : MonoBehaviour
         {
             float move = Input.GetAxisRaw("Horizontal");
             Vector2 proposedPos = boxRb.position + new Vector2(move * boxMoveSpeed * Time.deltaTime, 0);
-
-            if (isPossessing && possessedBox != null)
-            {
-                if (Mathf.Abs(move) > 0.01f)
-                {
-                    if (AudioManager.Instance != null)
-                        AudioManager.Instance.PlayLoopSFX("boxMoving");
-                }
-                else
-                {
-                    if (AudioManager.Instance != null)
-                        AudioManager.Instance.StopLoopSFX("boxMoving");
-                }
-            }
-            else
-            {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.StopLoopSFX("boxMoving");
-            }
 
             if (hostBody != null)
             {
@@ -244,6 +240,37 @@ public class SpiritController : MonoBehaviour
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(hostBody.position, maxRadius);
+        }
+    }
+
+    private class BoxCollisionHelper : MonoBehaviour
+    {
+        private SpiritController controller;
+        private bool isGrounded = false;
+
+        public void Setup(SpiritController ctrl, LayerMask mask)
+        {
+            controller = ctrl;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                if (!isGrounded)
+                {
+                    isGrounded = true;
+                    AudioManager.Instance?.PlaySFX("boxDrop");
+                }
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                isGrounded = false;
+            }
         }
     }
 }

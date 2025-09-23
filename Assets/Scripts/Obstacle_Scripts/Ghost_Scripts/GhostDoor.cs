@@ -65,7 +65,13 @@ public class GhostDoor : MonoBehaviour
 
                 ResetAllBoxes();
 
-                health.TakeDamage(1);
+                string damageSource = "Player";
+                SpiritController spiritCtrl = hit.GetComponent<SpiritController>();
+                if (spiritCtrl != null && spiritCtrl.hostBody != null)
+                    damageSource = "Spirit";
+
+                health.TakeDamage(1, damageSource);
+
                 damagedThisFrame.Add(health);
 
                 if (health.currentLife > 0)
@@ -96,6 +102,11 @@ public class GhostDoor : MonoBehaviour
 
                 if (health.currentLife <= 0)
                 {
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.StopLoopSFX("spiritHaunting");
+                    }
+
                     SceneManager.LoadScene(gameOverSceneName);
                 }
             }

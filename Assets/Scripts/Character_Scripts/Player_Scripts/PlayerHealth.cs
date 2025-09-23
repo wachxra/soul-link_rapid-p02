@@ -24,12 +24,20 @@ public class PlayerHealth : MonoBehaviour
         startPosition = transform.position;
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, string sourceTag = "Player")
     {
         if (Time.time - lastDamageTime < damageCooldown) return;
 
         currentLife -= amount;
         lastDamageTime = Time.time;
+
+        if (AudioManager.Instance != null)
+        {
+            if (sourceTag == "Player")
+                AudioManager.Instance.PlaySFX("playerTakeDamage");
+            else if (sourceTag == "Spirit")
+                AudioManager.Instance.PlaySFX("spiritTakeDamage");
+        }
 
         if (currentLife < 0)
             currentLife = 0;
