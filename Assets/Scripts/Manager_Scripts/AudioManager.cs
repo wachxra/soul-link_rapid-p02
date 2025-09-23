@@ -46,6 +46,10 @@ public class AudioManager : MonoBehaviour
     public TMP_Text bgToggleLabel;
     public TMP_Text sfxToggleLabel;
 
+    [Header("Knob Sprites")]
+    public Sprite knobNormal;
+    public Sprite knobMin;
+
     private Dictionary<string, AudioSource> sfxDict = new Dictionary<string, AudioSource>();
     private AudioSource currentBGM = null;
 
@@ -134,18 +138,34 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void SetBGVolume(float volume)
+    private void SetBGVolume(float volume)
     {
         bgVolume = Mathf.Clamp01(volume);
         if (currentBGM != null) currentBGM.volume = bgVolume;
+
+        if (bgSlider != null && bgSlider.handleRect != null)
+        {
+            Image knobImage = bgSlider.handleRect.GetComponent<Image>();
+            if (knobImage != null)
+                knobImage.sprite = bgVolume <= 0f ? knobMin : knobNormal;
+        }
+
         UpdateUI();
     }
 
-    public void SetSFXVolume(float volume)
+    private void SetSFXVolume(float volume)
     {
         sfxVolume = Mathf.Clamp01(volume);
         foreach (var sfx in sfxDict.Values)
             if (sfx != null) sfx.volume = sfxVolume;
+
+        if (sfxSlider != null && sfxSlider.handleRect != null)
+        {
+            Image knobImage = sfxSlider.handleRect.GetComponent<Image>();
+            if (knobImage != null)
+                knobImage.sprite = sfxVolume <= 0f ? knobMin : knobNormal;
+        }
+
         UpdateUI();
     }
 

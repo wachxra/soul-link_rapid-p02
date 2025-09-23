@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -20,8 +20,27 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        currentLife = maxLife;
         startPosition = transform.position;
+    }
+
+    private void Awake()
+    {
+        if (PersistentObjectsManager.persistentPlayerData != null)
+        {
+            currentLife = PersistentObjectsManager.persistentPlayerData.currentLife;
+            shardCount = PersistentObjectsManager.persistentPlayerData.shardCount;
+            totalShardsCollected = PersistentObjectsManager.persistentPlayerData.totalShardsCollected;
+        }
+    }
+
+    private void UpdatePersistentData()
+    {
+        if (PersistentObjectsManager.persistentPlayerData == null)
+            PersistentObjectsManager.persistentPlayerData = new PersistentObjectsManager.PlayerData();
+
+        PersistentObjectsManager.persistentPlayerData.currentLife = currentLife;
+        PersistentObjectsManager.persistentPlayerData.shardCount = shardCount;
+        PersistentObjectsManager.persistentPlayerData.totalShardsCollected = totalShardsCollected;
     }
 
     public void TakeDamage(int amount, string sourceTag = "Player")
@@ -41,6 +60,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentLife < 0)
             currentLife = 0;
+
+        UpdatePersistentData();
     }
 
     public void ResetLife()
@@ -49,13 +70,12 @@ public class PlayerHealth : MonoBehaviour
 
         shardCount = 0;
         totalShardsCollected = 0;
+
+        UpdatePersistentData();
     }
 
     public void CollectShard()
     {
-        if (totalShardsCollected >= shardToLife)
-            return;
-
         shardCount++;
         totalShardsCollected++;
 
@@ -64,6 +84,8 @@ public class PlayerHealth : MonoBehaviour
             AddLife(1);
             shardCount = 0;
         }
+
+        UpdatePersistentData();
     }
 
     private void AddLife(int amount)
@@ -71,5 +93,7 @@ public class PlayerHealth : MonoBehaviour
         currentLife += amount;
         if (currentLife > maxLife)
             currentLife = maxLife;
+
+        UpdatePersistentData();
     }
 }

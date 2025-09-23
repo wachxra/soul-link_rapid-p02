@@ -4,15 +4,29 @@ using System.Linq;
 
 public class PersistentObjectsManager : MonoBehaviour
 {
-    [Header("Objects ที่อยากให้ไปต่อในด่านอื่นๆ")]
+    [Header("Objects (Not Reset)")]
     public GameObject[] persistentObjects;
 
-    [Header("ชื่อ Scene ที่จะให้คงอยู่ (ไม่ reset)")]
+    [Header("Scenes (Not Reset)")]
     public string[] allowedScenes = { "Level01", "Level02", "Level03", "Level04" };
 
     private static bool isInitialized = false;
 
-    void Awake()
+    [Header("Persistent Player Settings")]
+    public GameObject playerPrefab;
+    public Vector3 spawnPosition;
+    private GameObject playerInstance;
+
+    public static PlayerData persistentPlayerData;
+
+    public class PlayerData
+    {
+        public int currentLife;
+        public int shardCount;
+        public int totalShardsCollected;
+    }
+
+    private void Awake()
     {
         string currentScene = SceneManager.GetActiveScene().name;
 
@@ -20,26 +34,53 @@ public class PersistentObjectsManager : MonoBehaviour
         {
             if (!isInitialized)
             {
-                foreach (GameObject obj in persistentObjects)
+                if (playerPrefab != null && GameObject.FindGameObjectWithTag("Player") == null)
                 {
-                    if (obj != null)
-                        DontDestroyOnLoad(obj);
+                    playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+
+                    var playerHealth = playerInstance.GetComponent<PlayerHealth>();
+                    if (playerHealth != null)
+                    {
+                        if (persistentPlayerData != null)
+                        {
+                            playerHealth.currentLife = persistentPlayerData.currentLife;
+                            playerHealth.shardCount = persistentPlayerData.shardCount;
+                            PlayerHealth.totalShardsCollected = persistentPlayerData.totalShardsCollected;
+                        }
+                    }
+
+                    DontDestroyOnLoad(playerInstance);
                 }
+
+                foreach (GameObject obj in persistentObjects)
+                    if (obj != null) DontDestroyOnLoad(obj);
 
                 DontDestroyOnLoad(gameObject);
                 isInitialized = true;
 
                 SceneManager.sceneLoaded += OnSceneLoaded;
             }
-            else
-            {
-                Destroy(gameObject);
-            }
         }
         else
         {
             Destroy(gameObject);
         }
+
+        if (playerPrefab != null && GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
+
+            var playerHealth = playerInstance.GetComponent<PlayerHealth>();
+            if (playerHealth != null && persistentPlayerData != null)
+            {
+                playerHealth.currentLife = persistentPlayerData.currentLife;
+                playerHealth.shardCount = persistentPlayerData.shardCount;
+                PlayerHealth.totalShardsCollected = PersistentObjectsManager.persistentPlayerData.totalShardsCollected;
+            }
+
+            DontDestroyOnLoad(playerInstance);
+        }
+
     }
 
     private void OnDestroy()
