@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 
 public class SpiritSceneManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class SpiritSceneManager : MonoBehaviour
     private Dictionary<SpriteRenderer, Color> originalColors = new Dictionary<SpriteRenderer, Color>();
     private bool isSpirit = false;
 
+    private TilemapRenderer[] allTilemaps;
+    private Dictionary<TilemapRenderer, Color> originalTilemapColors = new Dictionary<TilemapRenderer, Color>();
+
     void Awake()
     {
         allSprites = GameObject.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None);
@@ -34,6 +38,13 @@ public class SpiritSceneManager : MonoBehaviour
         {
             if (sr != null && !originalColors.ContainsKey(sr))
                 originalColors[sr] = sr.color;
+        }
+
+        allTilemaps = GameObject.FindObjectsByType<TilemapRenderer>(FindObjectsSortMode.None);
+        foreach (var tm in allTilemaps)
+        {
+            if (tm != null && !originalTilemapColors.ContainsKey(tm))
+                originalTilemapColors[tm] = tm.material.color;
         }
     }
 
@@ -65,7 +76,6 @@ public class SpiritSceneManager : MonoBehaviour
                 if (sr == null) continue;
 
                 int layer = sr.gameObject.layer;
-
                 if (layer == LayerMask.NameToLayer("Box") || layer == LayerMask.NameToLayer("Lever"))
                 {
                     Vector3 currentVec = new Vector3(sr.color.r, sr.color.g, sr.color.b);
@@ -94,6 +104,21 @@ public class SpiritSceneManager : MonoBehaviour
                     sr.color = new Color(newVec.x, newVec.y, newVec.z, sr.color.a);
                 }
             }
+
+            foreach (var tm in allTilemaps)
+            {
+                if (tm == null) continue;
+
+                Color original = originalTilemapColors.ContainsKey(tm) ? originalTilemapColors[tm] : Color.white;
+                float gray = (original.r + original.g + original.b) / 3f;
+                gray *= (1f - darkness);
+                Color target = new Color(gray, gray, gray, original.a);
+
+                Vector3 currentVec = new Vector3(tm.material.color.r, tm.material.color.g, tm.material.color.b);
+                Vector3 targetVec = new Vector3(target.r, target.g, target.b);
+                Vector3 newVec = Vector3.MoveTowards(currentVec, targetVec, colorTransitionSpeed * Time.deltaTime);
+                tm.material.color = new Color(newVec.x, newVec.y, newVec.z, tm.material.color.a);
+            }
         }
     }
 
@@ -110,6 +135,16 @@ public class SpiritSceneManager : MonoBehaviour
                     if (sr == null) continue;
                     if (originalColors.ContainsKey(sr))
                         sr.color = originalColors[sr];
+                }
+            }
+
+            if (allTilemaps != null)
+            {
+                foreach (var tm in allTilemaps)
+                {
+                    if (tm == null) continue;
+                    if (originalTilemapColors.ContainsKey(tm))
+                        tm.material.color = originalTilemapColors[tm];
                 }
             }
 
