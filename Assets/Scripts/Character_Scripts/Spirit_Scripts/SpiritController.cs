@@ -191,12 +191,23 @@ public class SpiritController : MonoBehaviour
 
             if (hostBody != null)
             {
-                float dist = Vector2.Distance(proposedPos, hostBody.position);
+                float dist = (proposedPos - (Vector2)hostBody.position).magnitude;
                 if (dist > maxRadius)
                 {
                     Vector2 dir = (proposedPos - (Vector2)hostBody.position).normalized;
                     proposedPos = (Vector2)hostBody.position + dir * maxRadius;
                 }
+            }
+
+            if (Mathf.Abs(move) > 0.01f)
+            {
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.PlayLoopSFX("boxMoving");
+            }
+            else
+            {
+                if (AudioManager.Instance != null)
+                    AudioManager.Instance.StopLoopSFX("boxMoving");
             }
 
             boxRb.MovePosition(proposedPos);
