@@ -88,6 +88,8 @@ public class PauseMenuManager : MonoBehaviour
 
     private void ResetGameData()
     {
+        PersistentObjectsManager.ResetPersistentObjects();
+
         PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
         if (player != null)
         {

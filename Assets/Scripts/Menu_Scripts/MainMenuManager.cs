@@ -16,6 +16,8 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
+        PersistentObjectsManager.ResetPersistentObjects();
+
         if (settingsPanel != null)
             settingsPanel.SetActive(false);
 

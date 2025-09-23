@@ -157,4 +157,19 @@ public class SpiritSceneManager : MonoBehaviour
                 mainCamera.backgroundColor = spiritBgColor;
         }
     }
+
+    public void RefreshSceneObjects()
+    {
+        allSprites = GameObject.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None);
+        originalColors.Clear();
+        foreach (var sr in allSprites)
+            if (sr != null && !originalColors.ContainsKey(sr))
+                originalColors[sr] = sr.color;
+
+        allTilemaps = GameObject.FindObjectsByType<TilemapRenderer>(FindObjectsSortMode.None);
+        originalTilemapColors.Clear();
+        foreach (var tm in allTilemaps)
+            if (tm != null && !originalTilemapColors.ContainsKey(tm))
+                originalTilemapColors[tm] = tm.material.color;
+    }
 }

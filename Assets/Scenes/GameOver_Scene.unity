@@ -523,7 +523,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Testing_Scene
+          m_StringArgument: Level01
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &945983939
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 0}
   settingsPanel: {fileID: 0}
   mainMenuSceneName: MainMenu_Scene
-  level1SceneName: Level01_Scene
+  level1SceneName: Level01
   bgSliderSettings: {fileID: 0}
   sfxSliderSettings: {fileID: 0}
   bgToggleSettings: {fileID: 0}
