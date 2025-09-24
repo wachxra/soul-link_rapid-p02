@@ -10,7 +10,7 @@ public class SpiritController : MonoBehaviour
     public Transform hostBody;
     public float maxRadius = 30f;
 
-    [HideInInspector] public float boxMoveSpeed = 5f;
+    [HideInInspector] public float boxMoveSpeed = 2.5f;
 
     [Header("Camera")]
     public CameraFollowPlayer cameraFollow;
@@ -44,6 +44,11 @@ public class SpiritController : MonoBehaviour
 
         gameObject.layer = LayerMask.NameToLayer("Spirit");
         rb.gravityScale = 0;
+
+/*#if UNITY_WEBGL
+        moveSpeed = moveSpeed / 2f;
+        Application.targetFrameRate = 60;
+#endif*/
     }
 
     private void Update()
@@ -187,6 +192,7 @@ public class SpiritController : MonoBehaviour
         if (boxRb != null)
         {
             float move = Input.GetAxisRaw("Horizontal");
+            /*Vector2 proposedPos = boxRb.position + new Vector2(move * boxMoveSpeed * Time.fixedDeltaTime, 0);*/
             Vector2 proposedPos = boxRb.position + new Vector2(move * boxMoveSpeed * Time.deltaTime, 0);
 
             if (hostBody != null)
