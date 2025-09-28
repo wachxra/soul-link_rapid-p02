@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/01Testing_Scene.unity
     guid: bf3cdad8f880d284984ccaf9e7303102
   - enabled: 0
+    path: Assets/Scenes/Final_Scene/Level03.unity
+    guid: a3175bb502f67cf4db0bcd2cfa3867f5
+  - enabled: 0
+    path: Assets/Scenes/Final_Scene/Level04.unity
+    guid: 410e170602750d444a6b33b54a9a59ad
+  - enabled: 0
     path: Assets/Scenes/Testing_Scene.unity
     guid: 30e0fbce56ceadb459c93b78ddc22862
   - enabled: 1
@@ -23,12 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final_Scene/Level02.unity
     guid: 5924b9d534a88744d88dee40d573384a
-  - enabled: 1
-    path: Assets/Scenes/Final_Scene/Level03.unity
-    guid: a3175bb502f67cf4db0bcd2cfa3867f5
-  - enabled: 1
-    path: Assets/Scenes/Final_Scene/Level04.unity
-    guid: 410e170602750d444a6b33b54a9a59ad
   - enabled: 1
     path: Assets/Scenes/GameOver_Scene.unity
     guid: ff1f2092bd472db47b73ddaa5c400abf
