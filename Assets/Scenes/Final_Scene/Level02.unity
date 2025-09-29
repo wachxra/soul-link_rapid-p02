@@ -6774,7 +6774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 635660839}
   - component: {fileID: 635660840}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7898,7 +7898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705167609}
   - component: {fileID: 705167610}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7982,7 +7982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717426146}
   - component: {fileID: 717426147}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10281,7 +10281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852883182}
   - component: {fileID: 852883183}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23850,7 +23850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887055154}
   - component: {fileID: 887055155}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24704,7 +24704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 989402111}
   - component: {fileID: 989402112}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26710,7 +26710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1183010780}
   - component: {fileID: 1183010781}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27650,7 +27650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1236454128}
   - component: {fileID: 1236454129}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28018,7 +28018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271872919}
   - component: {fileID: 1271872920}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28889,7 +28889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1370306482}
   - component: {fileID: 1370306483}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31567,7 +31567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598728281}
   - component: {fileID: 1598728282}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31651,7 +31651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599887837}
   - component: {fileID: 1599887838}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31735,7 +31735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600269515}
   - component: {fileID: 1600269516}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31876,7 +31876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624843171}
   - component: {fileID: 1624843172}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33967,7 +33967,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1847006860}
   - component: {fileID: 1847006861}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34527,7 +34527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1948117181}
   - component: {fileID: 1948117182}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34701,7 +34701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1979371924}
   - component: {fileID: 1979371925}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35668,7 +35668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2018917164}
   - component: {fileID: 2018917165}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36278,7 +36278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2061567033}
   - component: {fileID: 2061567034}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36565,7 +36565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2073236952}
   - component: {fileID: 2073236953}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36649,7 +36649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079241656}
   - component: {fileID: 2079241657}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36733,7 +36733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2082445314}
   - component: {fileID: 2082445315}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Light 2D (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

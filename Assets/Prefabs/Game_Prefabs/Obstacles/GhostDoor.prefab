@@ -128,8 +128,8 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.26430464, y: -0.08988762}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 2.97, w: 0}
-    pivot: {x: 0.3837209, y: 0.49314743}
+    border: {x: 0, y: 0, z: 3, w: 0}
+    pivot: {x: 0.39341077, y: 0.4977157}
     oldSize: {x: 12.8, y: 18.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -151,9 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GhostDoor
   eyesOpenSprite: {fileID: 21300000, guid: cba41415c8eac5e40ac3a473f3e14173, type: 3}
-  eyesClosedSprite: {fileID: 21300000, guid: 34b8d78678b0f9a4893e1f52c3c5b3ba, type: 3}
+  eyesClosedSprite: {fileID: 21300000, guid: e6dfd396a18fac04d8c6e6dc53264052, type: 3}
   isDoorActuallyOpen: 1
-  playerSeesOpen: 1
+  playerSeesOpen: 0
   spiritSeesOpen: 1
   gameOverSceneName: GameOver_Scene
   obstacleLayer:

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using UnityEngine.Rendering.Universal;
 
 public class SpiritSceneManager : MonoBehaviour
 {
     [Header("Spirit Mode Settings")]
-    [Range(0f, 1f)]
-    public float minDarknessAmount = 0.2f;
-    [Range(0f, 1f)]
-    public float maxDarknessAmount = 0.8f;
+    [Range(0f, 1f)] public float minDarknessAmount = 0.2f;
+    [Range(0f, 1f)] public float maxDarknessAmount = 0.8f;
+
+    [Header("Glow Settings")]
     public Color glowColor = Color.cyan;
+    [Range(0.5f, 5f)] public float glowIntensity = 2f;
 
     [Header("Camera Settings")]
     public Camera mainCamera;
@@ -31,21 +33,11 @@ public class SpiritSceneManager : MonoBehaviour
     private TilemapRenderer[] allTilemaps;
     private Dictionary<TilemapRenderer, Color> originalTilemapColors = new Dictionary<TilemapRenderer, Color>();
 
+    private Light2D[] allLights;
+
     void Awake()
     {
-        allSprites = GameObject.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None);
-        foreach (var sr in allSprites)
-        {
-            if (sr != null && !originalColors.ContainsKey(sr))
-                originalColors[sr] = sr.color;
-        }
-
-        allTilemaps = GameObject.FindObjectsByType<TilemapRenderer>(FindObjectsSortMode.None);
-        foreach (var tm in allTilemaps)
-        {
-            if (tm != null && !originalTilemapColors.ContainsKey(tm))
-                originalTilemapColors[tm] = tm.material.color;
-        }
+        RefreshSceneObjects();
     }
 
     void Start()
@@ -65,10 +57,7 @@ public class SpiritSceneManager : MonoBehaviour
             if (mainCamera != null)
             {
                 Color targetBg = Color.Lerp(humanBgColor, spiritBgColor, darkness);
-                Vector3 currentVec = new Vector3(mainCamera.backgroundColor.r, mainCamera.backgroundColor.g, mainCamera.backgroundColor.b);
-                Vector3 targetVec = new Vector3(targetBg.r, targetBg.g, targetBg.b);
-                Vector3 newVec = Vector3.MoveTowards(currentVec, targetVec, colorTransitionSpeed * Time.deltaTime);
-                mainCamera.backgroundColor = new Color(newVec.x, newVec.y, newVec.z, mainCamera.backgroundColor.a);
+                mainCamera.backgroundColor = Color.Lerp(mainCamera.backgroundColor, targetBg, colorTransitionSpeed * Time.deltaTime);
             }
 
             foreach (var sr in allSprites)
@@ -76,12 +65,10 @@ public class SpiritSceneManager : MonoBehaviour
                 if (sr == null) continue;
 
                 int layer = sr.gameObject.layer;
+
                 if (layer == LayerMask.NameToLayer("Box") || layer == LayerMask.NameToLayer("Lever"))
                 {
-                    Vector3 currentVec = new Vector3(sr.color.r, sr.color.g, sr.color.b);
-                    Vector3 targetVec = new Vector3(glowColor.r, glowColor.g, glowColor.b);
-                    Vector3 newVec = Vector3.MoveTowards(currentVec, targetVec, colorTransitionSpeed * Time.deltaTime);
-                    sr.color = new Color(newVec.x, newVec.y, newVec.z, sr.color.a);
+                    continue;
                 }
                 else if (layer == LayerMask.NameToLayer("Shard") || layer == LayerMask.NameToLayer("GhostDoor"))
                 {
@@ -94,14 +81,9 @@ public class SpiritSceneManager : MonoBehaviour
                 else
                 {
                     Color original = originalColors.ContainsKey(sr) ? originalColors[sr] : sr.color;
-                    float gray = (original.r + original.g + original.b) / 3f;
-                    gray *= (1f - darkness);
+                    float gray = (1f - darkness) * 0.5f;
                     Color target = new Color(gray, gray, gray, original.a);
-
-                    Vector3 currentVec = new Vector3(sr.color.r, sr.color.g, sr.color.b);
-                    Vector3 targetVec = new Vector3(target.r, target.g, target.b);
-                    Vector3 newVec = Vector3.MoveTowards(currentVec, targetVec, colorTransitionSpeed * Time.deltaTime);
-                    sr.color = new Color(newVec.x, newVec.y, newVec.z, sr.color.a);
+                    sr.color = Color.Lerp(sr.color, target, colorTransitionSpeed * Time.deltaTime);
                 }
             }
 
@@ -109,15 +91,9 @@ public class SpiritSceneManager : MonoBehaviour
             {
                 if (tm == null) continue;
 
-                Color original = originalTilemapColors.ContainsKey(tm) ? originalTilemapColors[tm] : Color.white;
-                float gray = (original.r + original.g + original.b) / 3f;
-                gray *= (1f - darkness);
-                Color target = new Color(gray, gray, gray, original.a);
-
-                Vector3 currentVec = new Vector3(tm.material.color.r, tm.material.color.g, tm.material.color.b);
-                Vector3 targetVec = new Vector3(target.r, target.g, target.b);
-                Vector3 newVec = Vector3.MoveTowards(currentVec, targetVec, colorTransitionSpeed * Time.deltaTime);
-                tm.material.color = new Color(newVec.x, newVec.y, newVec.z, tm.material.color.a);
+                float gray = (1f - darkness) * 0.5f;
+                Color target = new Color(gray, gray, gray, tm.material.color.a);
+                tm.material.color = Color.Lerp(tm.material.color, target, colorTransitionSpeed * Time.deltaTime);
             }
         }
     }
@@ -126,8 +102,37 @@ public class SpiritSceneManager : MonoBehaviour
     {
         isSpirit = active;
 
-        if (!isSpirit)
+        if (active)
         {
+            if (allLights != null)
+            {
+                foreach (var light in allLights)
+                {
+                    if (light == null) continue;
+                    if (light.gameObject.layer == LayerMask.NameToLayer("Light"))
+                        light.enabled = false;
+                }
+            }
+
+            if (mainCamera != null)
+                mainCamera.backgroundColor = spiritBgColor;
+
+            EnableGlowForBoxesAndLevers();
+        }
+        else
+        {
+            DisableGlowForBoxesAndLevers();
+
+            if (allLights != null)
+            {
+                foreach (var light in allLights)
+                {
+                    if (light == null) continue;
+                    if (light.gameObject.layer == LayerMask.NameToLayer("Light"))
+                        light.enabled = true;
+                }
+            }
+
             if (allSprites != null)
             {
                 foreach (var sr in allSprites)
@@ -151,10 +156,48 @@ public class SpiritSceneManager : MonoBehaviour
             if (mainCamera != null)
                 mainCamera.backgroundColor = humanBgColor;
         }
-        else
+    }
+
+    private void EnableGlowForBoxesAndLevers()
+    {
+        foreach (var sr in allSprites)
         {
-            if (mainCamera != null)
-                mainCamera.backgroundColor = spiritBgColor;
+            if (sr == null) continue;
+
+            int layer = sr.gameObject.layer;
+            if (layer == LayerMask.NameToLayer("Box") || layer == LayerMask.NameToLayer("Lever"))
+            {
+                Light2D light = sr.GetComponent<Light2D>();
+                if (light == null)
+                    light = sr.gameObject.AddComponent<Light2D>();
+
+                light.lightType = Light2D.LightType.Point;
+                light.color = glowColor;
+                light.intensity = glowIntensity;
+                light.pointLightOuterRadius = 5f;
+                light.enabled = true;
+
+                sr.color = glowColor;
+            }
+        }
+    }
+
+    private void DisableGlowForBoxesAndLevers()
+    {
+        foreach (var sr in allSprites)
+        {
+            if (sr == null) continue;
+
+            int layer = sr.gameObject.layer;
+            if (layer == LayerMask.NameToLayer("Box") || layer == LayerMask.NameToLayer("Lever"))
+            {
+                Light2D light = sr.GetComponent<Light2D>();
+                if (light != null)
+                    light.enabled = false;
+
+                if (originalColors.ContainsKey(sr))
+                    sr.color = originalColors[sr];
+            }
         }
     }
 
@@ -171,5 +214,7 @@ public class SpiritSceneManager : MonoBehaviour
         foreach (var tm in allTilemaps)
             if (tm != null && !originalTilemapColors.ContainsKey(tm))
                 originalTilemapColors[tm] = tm.material.color;
+
+        allLights = GameObject.FindObjectsByType<Light2D>(FindObjectsSortMode.None);
     }
 }

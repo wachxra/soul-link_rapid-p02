@@ -208,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5320387071015882871, guid: 1249c7b2910ed90479b725175d80c5a1, type: 3}
       propertyPath: keyID
-      value: Door1_Level02
+      value: Door1_Level01
       objectReference: {fileID: 0}
     - target: {fileID: 5320387071015882871, guid: 1249c7b2910ed90479b725175d80c5a1, type: 3}
       propertyPath: mainDoor
@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 5320387071015882871, guid: 1249c7b2910ed90479b725175d80c5a1, type: 3}
       propertyPath: openSprite
       value: 
-      objectReference: {fileID: -417287804819472149, guid: 3ee98546c531001468397be25ccb2280, type: 3}
+      objectReference: {fileID: 21300000, guid: 34b8d78678b0f9a4893e1f52c3c5b3ba, type: 3}
     - target: {fileID: 5320387071015882871, guid: 1249c7b2910ed90479b725175d80c5a1, type: 3}
       propertyPath: isSceneDoor
       value: 0
@@ -229,7 +229,7 @@ PrefabInstance:
     - target: {fileID: 5320387071015882871, guid: 1249c7b2910ed90479b725175d80c5a1, type: 3}
       propertyPath: closedSprite
       value: 
-      objectReference: {fileID: 6621874816408859787, guid: 109fdf4bae7050a4aa23f61eb5bbb662, type: 3}
+      objectReference: {fileID: 21300000, guid: bce46f8a88d95784091932262aef5a5e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
