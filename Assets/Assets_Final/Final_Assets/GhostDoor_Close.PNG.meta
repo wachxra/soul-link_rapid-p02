@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 631c25f3cdd14ea488c68aa4851ddc90
+guid: 34b8d78678b0f9a4893e1f52c3c5b3ba
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8143738506185296451
-    second: GhostWindow_On_0
+      213: -2256093025826827461
+    second: GhostDoor_Close_0
+  - first:
+      213: 6260323180255339511
+    second: GhostDoor_Close_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,10 +52,10 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.39018086, y: 0.49314743}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 293, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -96,27 +99,62 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GhostWindow_On_0
+      name: GhostDoor_Close_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 331
-        width: 1223
-        height: 1035
+        x: 60
+        y: 141
+        width: 851
+        height: 1477
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 34a48d4260f540170800000000000000
-      internalID: 8143738506185296451
+      spriteID: b331b57a85fb0b0e0800000000000000
+      internalID: -2256093025826827461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GhostDoor_Close_1
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 510
+        width: 17
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f3634a83c221e650800000000000000
+      internalID: 6260323180255339511
       vertices: []
       indices: 
       edges: []
@@ -126,7 +164,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -135,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GhostWindow_On_0: 8143738506185296451
+      GhostDoor_Close_0: -2256093025826827461
+      GhostDoor_Close_1: 6260323180255339511
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

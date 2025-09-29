@@ -58,7 +58,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 2872498150578125596, guid: f4ef796673e38d847aa5700878ca76bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 631c25f3cdd14ea488c68aa4851ddc90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   eyesOpenSprite: {fileID: 21300000, guid: 631c25f3cdd14ea488c68aa4851ddc90, type: 3}
   eyesClosedSprite: {fileID: 21300000, guid: 17e51d1b6e8ff12488196098931adab3, type: 3}
   isDoorActuallyOpen: 1
-  playerSeesOpen: 0
+  playerSeesOpen: 1
   spiritSeesOpen: 1
   gameOverSceneName: GameOver_Scene
   obstacleLayer:

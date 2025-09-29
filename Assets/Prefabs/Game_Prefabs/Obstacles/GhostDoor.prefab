@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.1637, y: 0.80642986, z: 0}
-  m_LocalScale: {x: 0.15737453, y: 0.15737453, z: 0.15737453}
+  m_LocalScale: {x: 0.14324683, y: 0.14324683, z: 0.14324683}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 57d74c4f81abdaf429f59e3f6f4d8650, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cba41415c8eac5e40ac3a473f3e14173, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,8 +128,8 @@ BoxCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.26430464, y: -0.08988762}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 3, w: 0}
-    pivot: {x: 0.39, y: 0.5}
+    border: {x: 0, y: 0, z: 2.97, w: 0}
+    pivot: {x: 0.3837209, y: 0.49314743}
     oldSize: {x: 12.8, y: 18.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -150,10 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557930f5f9d7ac04ab4109bdd466500c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GhostDoor
-  eyesOpenSprite: {fileID: 21300000, guid: 6079cad3b0d9f8d4eba7f25aaa2d1587, type: 3}
-  eyesClosedSprite: {fileID: 21300000, guid: 57d74c4f81abdaf429f59e3f6f4d8650, type: 3}
+  eyesOpenSprite: {fileID: 21300000, guid: cba41415c8eac5e40ac3a473f3e14173, type: 3}
+  eyesClosedSprite: {fileID: 21300000, guid: 34b8d78678b0f9a4893e1f52c3c5b3ba, type: 3}
   isDoorActuallyOpen: 1
-  playerSeesOpen: 0
+  playerSeesOpen: 1
   spiritSeesOpen: 1
   gameOverSceneName: GameOver_Scene
   obstacleLayer:
