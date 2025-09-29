@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask boxLayer;
 
     [Header("Jump Tuning")]
-    public float fallMultiplier = 2.5f;     // ตอนตกจะตกไวขึ้น
-    public float lowJumpMultiplier = 2f;    // ตอนปล่อยปุ่มกระโดดจะตกเร็วขึ้น
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1.2f; // กำหนดน้ำหนักโดยรวม
+        rb.gravityScale = 1.2f;
     }
 
     private bool wasGrounded;
@@ -48,16 +48,14 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance?.PlaySFX("jumpOn");
         }
 
-        // ---- Jump Feel Control ----
-        if (rb.linearVelocity.y < 0) // ตอนตก
+        if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump")) // ตอนปล่อยปุ่มกระโดด
+        else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump"))
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
-        // ----------------------------
 
         if (moveInput > 0 && !isFacingRight) Flip();
         else if (moveInput < 0 && isFacingRight) Flip();

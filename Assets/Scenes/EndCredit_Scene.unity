@@ -552,7 +552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 27}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: 800, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767993645
@@ -575,10 +575,34 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Korawan Aphiphunya\r\n1660701382\r\n\nSarawut Wongsri\r\n1660700061\r\n\r\nWachirawadee
-    Juntawatchai\r\n1660704022\r\n\r\nNapat Nhongsaeng\r\n1660702380\r\n\r\nThompad
-    Phurichayanuwat\r\n1660708148\r\n\r\nthitirat phuangmaduea\r\n1660707116\r\n\r\nKamonthat
-    Rungrueang\r\n1660708189\u0E48\r\n\nPhuchita Yordprasert\r\n1660704410"
+  m_text: '[ PROJECT OWNER ]
+
+
+    Thitirat Phuangmaduea
+
+    1660707116
+
+
+    [
+    PROJECT MANAGER ]
+
+
+    Sarawut Wongsri
+
+    1660700061
+
+    Thitirat Phuangmaduea
+
+    1660707116
+
+
+    [
+    GAME DEVELOPER ]
+
+
+    Wachirawadee Juntawatchai
+
+    1660704022'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -605,8 +629,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
