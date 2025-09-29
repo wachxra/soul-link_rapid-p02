@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 21d8a9276b3e10845a2c95adda2857bd
+guid: c9c91e9ef665a0d4ab75b397cb964050
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2487299475600853861
-    second: F_Skill_Icon_02_0
+      213: 7498091478341114201
+    second: LifePoint_Full_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: F_Skill_Icon_02_0
+      name: LifePoint_Full_0
       rect:
         serializedVersion: 2
-        x: 239
-        y: 251
-        width: 1591
-        height: 1648
+        x: 508
+        y: 602
+        width: 1035
+        height: 943
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 56b443dd1b9a48220800000000000000
-      internalID: 2487299475600853861
+      spriteID: 959d7e319729e0860800000000000000
+      internalID: 7498091478341114201
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      F_Skill_Icon_02_0: 2487299475600853861
+      LifePoint_Full_0: 7498091478341114201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

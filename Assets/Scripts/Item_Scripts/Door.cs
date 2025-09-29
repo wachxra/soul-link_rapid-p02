@@ -48,6 +48,8 @@ public class Door : MonoBehaviour
 
         playerNearby = true;
         playerInventory = other.GetComponent<PlayerInventory>();
+
+        ui?.SetContext("Door");
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -56,6 +58,8 @@ public class Door : MonoBehaviour
 
         playerNearby = false;
         playerInventory = null;
+
+        ui?.SetContext("Idle");
     }
 
     private void Update()

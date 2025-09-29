@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a31529cbcf19e9b47a5e441f78e262f7
+guid: e7416b966023111459b07a38ed79b296
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 565466065705132386
-    second: E_Skill_Spirit_01_0
+      213: -6544751889169661135
+    second: E_Skill_Human_03_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_Skill_Spirit_01_0
+      name: E_Skill_Human_03_0
       rect:
         serializedVersion: 2
         x: 239
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 26164ea0460f8d700800000000000000
-      internalID: 565466065705132386
+      spriteID: 133c9f615de5c25a0800000000000000
+      internalID: -6544751889169661135
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      E_Skill_Spirit_01_0: 565466065705132386
+      E_Skill_Human_03_0: -6544751889169661135
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c30097b88cf188c44ad55943a1e665a0
+guid: 21d8a9276b3e10845a2c95adda2857bd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8610560271129524735
-    second: F_Skill_Icon_01_0
+      213: 2487299475600853861
+    second: F_Skill_Icon_02_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: F_Skill_Icon_01_0
+      name: F_Skill_Icon_02_0
       rect:
         serializedVersion: 2
         x: 239
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 106cb3add05218880800000000000000
-      internalID: -8610560271129524735
+      spriteID: 56b443dd1b9a48220800000000000000
+      internalID: 2487299475600853861
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      F_Skill_Icon_01_0: -8610560271129524735
+      F_Skill_Icon_02_0: 2487299475600853861
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

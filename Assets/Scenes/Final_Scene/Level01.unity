@@ -3528,6 +3528,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2797661074854273738, guid: 1cff94afcf98c3642ada2b5a25156e25, type: 3}
+      propertyPath: eHumanIdle
+      value: 
+      objectReference: {fileID: 21300000, guid: e7416b966023111459b07a38ed79b296, type: 3}
+    - target: {fileID: 2797661074854273738, guid: 1cff94afcf98c3642ada2b5a25156e25, type: 3}
       propertyPath: skillEIcon
       value: 
       objectReference: {fileID: 988810747}
@@ -3535,6 +3539,10 @@ PrefabInstance:
       propertyPath: skillFIcon
       value: 
       objectReference: {fileID: 1041634201}
+    - target: {fileID: 2797661074854273738, guid: 1cff94afcf98c3642ada2b5a25156e25, type: 3}
+      propertyPath: eSpiritIdle
+      value: 
+      objectReference: {fileID: 21300000, guid: b42ed4179f5cc854d8748c32ba269fcf, type: 3}
     - target: {fileID: 2797661074854273738, guid: 1cff94afcf98c3642ada2b5a25156e25, type: 3}
       propertyPath: 'hearts.Array.data[0]'
       value: 
