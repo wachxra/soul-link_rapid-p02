@@ -22739,6 +22739,10 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 788517081}
+    - target: {fileID: 5636599399042149123, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
+      propertyPath: spiritRadius
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8977585645016906498, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -28295,7 +28299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1259151140}
   - component: {fileID: 1259151139}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Black_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}

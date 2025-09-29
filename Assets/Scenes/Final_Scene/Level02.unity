@@ -29622,11 +29622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.57
+      value: -57.42
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: -9.02
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29668,6 +29668,10 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 1470150397}
+    - target: {fileID: 5636599399042149123, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
+      propertyPath: spiritRadius
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8977585645016906498, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_Name
       value: Player

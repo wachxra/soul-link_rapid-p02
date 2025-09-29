@@ -11,7 +11,7 @@ public class SpiritSceneManager : MonoBehaviour
 
     [Header("Glow Settings")]
     public Color glowColor = Color.cyan;
-    [Range(0.5f, 5f)] public float glowIntensity = 2f;
+    [Range(0.5f, 10f)] public float glowIntensity = 2f;
 
     [Header("Camera Settings")]
     public Camera mainCamera;

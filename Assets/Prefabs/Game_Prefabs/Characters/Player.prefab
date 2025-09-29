@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
-  jumpForce: 7
+  jumpForce: 10
   groundCheck: {fileID: 1599088589094814112}
   groundCheckDistance: 0.9
   groundCheckWidth: 0.28
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFormSwitcher
   spiritPrefab: {fileID: 8977585645016906498, guid: 902965f491d6c394faa76ba9b3b1c031, type: 3}
   switchKey: 102
-  spiritRadius: 15
+  spiritRadius: 7.5
   boxMoveSpeed: 15
   cameraFollow: {fileID: 0}
   spiritScene: {fileID: 0}
