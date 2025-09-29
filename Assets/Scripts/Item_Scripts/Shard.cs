@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class Shard : MonoBehaviour
@@ -28,6 +28,9 @@ public class Shard : MonoBehaviour
 
         if (playerHealth != null)
         {
+            if (!IsVisibleTo(collision.transform))
+                return;
+
             bool willGainLife = (playerHealth.shardCount + 1 >= playerHealth.shardToLife);
 
             playerHealth.CollectShard();
@@ -37,16 +40,9 @@ public class Shard : MonoBehaviour
 
             if (TextPopupManager.Instance != null)
             {
-                string message;
-
-                if (willGainLife)
-                {
-                    message = "Life Point +1";
-                }
-                else
-                {
-                    message = $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards";
-                }
+                string message = willGainLife
+                    ? "Life Point +1"
+                    : $"{playerHealth.shardCount}/{playerHealth.shardToLife} Shards";
 
                 TextPopupManager.Instance.ShowText(
                     textPrefab,
@@ -60,5 +56,24 @@ public class Shard : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private bool IsVisibleTo(Transform target)
+    {
+        Vector2 start = target.position;
+        Vector2 end = transform.position;
+
+        Vector2 dir = (end - start).normalized;
+        start += dir * 0.1f;
+
+        int mask = LayerMask.GetMask("Box", "Ground", "Shard");
+        RaycastHit2D hit = Physics2D.Linecast(start, end, mask);
+
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject == this.gameObject;
+        }
+
+        return false;
     }
 }

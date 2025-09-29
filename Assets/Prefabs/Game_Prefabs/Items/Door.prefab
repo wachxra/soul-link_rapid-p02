@@ -80,10 +80,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 6621874816408859787, guid: 109fdf4bae7050a4aa23f61eb5bbb662, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -208,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5320387071015882871, guid: 1249c7b2910ed90479b725175d80c5a1, type: 3}
       propertyPath: keyID
-      value: Door1_Level01
+      value: Door1_Level02
       objectReference: {fileID: 0}
     - target: {fileID: 5320387071015882871, guid: 1249c7b2910ed90479b725175d80c5a1, type: 3}
       propertyPath: mainDoor

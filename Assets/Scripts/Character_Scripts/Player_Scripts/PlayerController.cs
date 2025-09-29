@@ -13,13 +13,19 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ground Check")]
     public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
+    public float groundCheckDistance = 0.1f;
+    public float groundCheckWidth = 0.28f;
     public LayerMask groundLayer;
     public LayerMask boxLayer;
+
+    [Header("Jump Tuning")]
+    public float fallMultiplier = 2.5f;     // ตอนตกจะตกไวขึ้น
+    public float lowJumpMultiplier = 2f;    // ตอนปล่อยปุ่มกระโดดจะตกเร็วขึ้น
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1.2f; // กำหนดน้ำหนักโดยรวม
     }
 
     private bool wasGrounded;
@@ -39,9 +45,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded && CompareTag("Player"))
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
             AudioManager.Instance?.PlaySFX("jumpOn");
         }
+
+        // ---- Jump Feel Control ----
+        if (rb.linearVelocity.y < 0) // ตอนตก
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.linearVelocity.y > 0 && !Input.GetButton("Jump")) // ตอนปล่อยปุ่มกระโดด
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+        // ----------------------------
 
         if (moveInput > 0 && !isFacingRight) Flip();
         else if (moveInput < 0 && isFacingRight) Flip();
@@ -51,8 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        bool currentlyGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)
-                                || Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, boxLayer);
+        bool currentlyGrounded = IsGrounded();
 
         if (!wasGrounded && currentlyGrounded)
         {
@@ -61,6 +76,21 @@ public class PlayerController : MonoBehaviour
 
         wasGrounded = currentlyGrounded;
         isGrounded = currentlyGrounded;
+    }
+
+    private bool IsGrounded()
+    {
+        int mask = groundLayer | boxLayer;
+
+        Vector3 center = groundCheck.position;
+        Vector3 left = center + Vector3.left * groundCheckWidth;
+        Vector3 right = center + Vector3.right * groundCheckWidth;
+
+        bool hitCenter = Physics2D.Raycast(center, Vector2.down, groundCheckDistance, mask);
+        bool hitLeft = Physics2D.Raycast(left, Vector2.down, groundCheckDistance, mask);
+        bool hitRight = Physics2D.Raycast(right, Vector2.down, groundCheckDistance, mask);
+
+        return hitCenter || hitLeft || hitRight;
     }
 
     private void Flip()
@@ -75,8 +105,14 @@ public class PlayerController : MonoBehaviour
     {
         if (groundCheck != null)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+            Gizmos.color = Color.green;
+            Vector3 center = groundCheck.position;
+            Vector3 left = center + Vector3.left * groundCheckWidth;
+            Vector3 right = center + Vector3.right * groundCheckWidth;
+
+            Gizmos.DrawLine(center, center + Vector3.down * groundCheckDistance);
+            Gizmos.DrawLine(left, left + Vector3.down * groundCheckDistance);
+            Gizmos.DrawLine(right, right + Vector3.down * groundCheckDistance);
         }
     }
 }
