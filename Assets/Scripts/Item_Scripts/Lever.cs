@@ -141,7 +141,7 @@ public class Lever : MonoBehaviour
         Vector2 dir = (end - start).normalized;
         start += dir * 0.1f;
 
-        int mask = LayerMask.GetMask("Box", "Ground");
+        int mask = LayerMask.GetMask("Box");
         RaycastHit2D hit = Physics2D.Linecast(start, end, mask);
 
         if (hit.collider != null)

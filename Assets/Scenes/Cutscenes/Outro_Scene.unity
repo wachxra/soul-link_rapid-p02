@@ -405,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneController
   videoPlayer: {fileID: 1006691497}
   transitionManager: {fileID: 1006691495}
-  nextSceneName: GameWon_Scene
+  nextSceneName: MainMenu_Scene
 --- !u!328 &1006691497
 VideoPlayer:
   m_ObjectHideFlags: 0
