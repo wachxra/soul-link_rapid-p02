@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animate")]
     [SerializeField] private Animator animator;
+    public Animator HostAnimator => animator;
 
     private void Start()
     {

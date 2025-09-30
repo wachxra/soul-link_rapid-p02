@@ -20,11 +20,14 @@ public class PlayerFormSwitcher : MonoBehaviour
     private GameObject spiritInstance;
     private bool isInSpirit = false;
 
+    private Animator hostAnimator;
+
     private UIManager ui;
 
     void Start()
     {
         ui = FindAnyObjectByType<UIManager>();
+        hostAnimator = GetComponent<Animator>();
 
         Collider2D playerCol = GetComponent<Collider2D>();
         Collider2D[] boxCols = GameObject.FindGameObjectsWithTag("Box")
@@ -59,6 +62,8 @@ public class PlayerFormSwitcher : MonoBehaviour
     private void BecomeSpirit()
     {
         ui?.SetForm(true);
+
+        hostAnimator?.SetBool("isSpiritMode", true);
 
         if (spiritPrefab == null) return;
 
@@ -98,6 +103,7 @@ public class PlayerFormSwitcher : MonoBehaviour
     public void ReturnToBody()
     {
         ui?.SetForm(false);
+        hostAnimator?.SetBool("isSpiritMode", false);
 
         if (AudioManager.Instance != null)
         {
