@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8126043024110050749}
   - component: {fileID: 7216249666853298628}
   - component: {fileID: 5636599399042149123}
+  - component: {fileID: 7387532240125660990}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -85,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: f6df39d8007c0e447a456e3a3a36ec23, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da1cb63e525338a47ad9622c2817c6d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,7 +112,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 10
   groundCheck: {fileID: 1599088589094814112}
-  groundCheckDistance: 0.9
+  groundCheckDistance: 1.03
   groundCheckWidth: 0.28
   groundLayer:
     serializedVersion: 2
@@ -121,6 +122,7 @@ MonoBehaviour:
     m_Bits: 1024
   fallMultiplier: 2.7
   lowJumpMultiplier: 1.2
+  animator: {fileID: 7387532240125660990}
 --- !u!50 &483789608061100134
 Rigidbody2D:
   serializedVersion: 5
@@ -182,17 +184,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.010054588, y: -0.73589134}
+  m_Offset: {x: 0.00675416, y: -0.88931847}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.8, y: 18.1}
+    border: {x: 3.916667, y: 0, z: 5.766667, w: 0}
+    pivot: {x: 0.46447024, y: 0.5064599}
+    oldSize: {x: 21.333334, y: 21.333334}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.3792286, y: 15.787518}
+  m_Size: {x: 5.977921, y: 18.344631}
   m_EdgeRadius: 0
 --- !u!114 &8126043024110050749
 MonoBehaviour:
@@ -238,7 +240,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFormSwitcher
   spiritPrefab: {fileID: 8977585645016906498, guid: 902965f491d6c394faa76ba9b3b1c031, type: 3}
   switchKey: 102
-  spiritRadius: 7.5
+  spiritRadius: 8.5
   boxMoveSpeed: 3
   cameraFollow: {fileID: 0}
   spiritScene: {fileID: 0}
+--- !u!95 &7387532240125660990
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8977585645016906498}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1f325d716bfcc6c4bae492edd0dd773c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

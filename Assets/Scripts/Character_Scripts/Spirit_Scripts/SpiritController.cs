@@ -238,8 +238,7 @@ public class SpiritController : MonoBehaviour
         if (boxCollision != null)
             boxCollision.isPossessed = true;
 
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX("spiritPossessBox");
+        AudioManager.Instance?.PlaySFX("spiritPossessBox");
 
         if (cameraFollow != null)
             cameraFollow.player = possessedBox.transform;
@@ -365,12 +364,5 @@ public class SpiritController : MonoBehaviour
 
         if (cameraFollow != null)
             cameraFollow.player = this.transform;
-
-        SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
-        if (sceneManager != null)
-        {
-            sceneManager.SetSpiritMode(false);
-            sceneManager.spirit = null;
-        }
     }
 }

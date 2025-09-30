@@ -143,6 +143,7 @@ MonoBehaviour:
     m_Bits: 0
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  animator: {fileID: -217707610192230131}
 --- !u!50 &483789608061100134
 Rigidbody2D:
   serializedVersion: 5

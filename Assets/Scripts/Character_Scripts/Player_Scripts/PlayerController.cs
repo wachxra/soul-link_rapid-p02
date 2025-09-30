@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
+    [Header("Animate")]
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,6 +38,12 @@ public class PlayerController : MonoBehaviour
         if (PauseMenuManager.GameIsPaused) return;
 
         moveInput = Input.GetAxisRaw("Horizontal");
+
+        animator.SetFloat("Speed", Mathf.Abs(moveInput));
+
+        animator.SetBool("isGrounded", isGrounded);
+
+        animator.SetFloat("yVelocity", rb.linearVelocity.y);
 
         if (AudioManager.Instance != null && CompareTag("Player"))
         {
