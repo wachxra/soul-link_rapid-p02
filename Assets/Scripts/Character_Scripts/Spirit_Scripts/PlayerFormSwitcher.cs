@@ -95,7 +95,7 @@ public class PlayerFormSwitcher : MonoBehaviour
     }
 
 
-    private void ReturnToBody()
+    public void ReturnToBody()
     {
         ui?.SetForm(false);
 

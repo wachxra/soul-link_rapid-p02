@@ -31,6 +31,9 @@ public class SpiritController : MonoBehaviour
     private bool isPossessing = false;
     private GameObject possessedBox;
 
+    public bool IsPossessing => isPossessing;
+    public GameObject PossessedBox => possessedBox;
+
     private SpriteRenderer spriteRenderer;
     private Collider2D col;
 

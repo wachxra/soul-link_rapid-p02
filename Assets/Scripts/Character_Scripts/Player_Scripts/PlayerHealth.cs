@@ -65,6 +65,14 @@ public class PlayerHealth : MonoBehaviour
                 AudioManager.Instance.PlaySFX("spiritTakeDamage");
         }
 
+        PlayerFormSwitcher formSwitcher = GetComponent<PlayerFormSwitcher>();
+        if (formSwitcher != null)
+        {
+            formSwitcher.ReturnToBody();
+        }
+
+        transform.position = startPosition;
+
         if (currentLife < 0)
             currentLife = 0;
 
