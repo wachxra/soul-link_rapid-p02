@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4234ae8aded3099488a63677e396acbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpiritSceneManager
-  minDarknessAmount: 0.85
+  minDarknessAmount: 0.5
   maxDarknessAmount: 1
   glowColor: {r: 0, g: 1, b: 1, a: 1}
+  glowIntensity: 5
   mainCamera: {fileID: 0}
-  humanBgColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
-  spiritBgColor: {r: 0, g: 0, b: 0, a: 1}
+  humanBgColor: {r: 1, g: 1, b: 1, a: 1}
+  spiritBgColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
   hostBody: {fileID: 0}
   spirit: {fileID: 1599088589094814112, guid: 902965f491d6c394faa76ba9b3b1c031, type: 3}
   maxDistance: 30

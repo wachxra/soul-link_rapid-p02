@@ -57,9 +57,10 @@ MonoBehaviour:
   skillFIcon: {fileID: 0}
   fHumanSprite: {fileID: 21300000, guid: 21d8a9276b3e10845a2c95adda2857bd, type: 3}
   fSpiritSprite: {fileID: 21300000, guid: c30097b88cf188c44ad55943a1e665a0, type: 3}
-  eHumanIdle: {fileID: 21300000, guid: 4c3101229941619418f2cfbfe9168faa, type: 3}
+  eHumanIdle: {fileID: 21300000, guid: e7416b966023111459b07a38ed79b296, type: 3}
   eHumanLever: {fileID: 21300000, guid: da9c13e21df693842afd5b2bba25db10, type: 3}
   eHumanDoor: {fileID: 21300000, guid: 1cc22e567daca1f49a8bc6d6a6711b0e, type: 3}
-  eSpiritIdle: {fileID: 21300000, guid: 7241ad1935fe2ee4eb2c5f24ac28ea1f, type: 3}
+  eSpiritIdle: {fileID: 21300000, guid: b42ed4179f5cc854d8748c32ba269fcf, type: 3}
   eSpiritLever: {fileID: 21300000, guid: 114edcad9750e4a439e2f92292a5e5ca, type: 3}
   eSpiritPossessBox: {fileID: 21300000, guid: a31529cbcf19e9b47a5e441f78e262f7, type: 3}
+  uiParent: {fileID: 0}

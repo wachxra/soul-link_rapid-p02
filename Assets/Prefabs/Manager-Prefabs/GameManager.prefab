@@ -48,7 +48,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 0}
   settingsPanel: {fileID: 0}
   mainMenuSceneName: MainMenu_Scene
-  level1SceneName: Testing_Scene
+  level1SceneName: Level01
   bgSliderSettings: {fileID: 0}
   sfxSliderSettings: {fileID: 0}
   bgToggleSettings: {fileID: 0}
