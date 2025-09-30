@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerFormSwitcher : MonoBehaviour
 {
@@ -125,7 +126,8 @@ public class PlayerFormSwitcher : MonoBehaviour
 
         isInSpirit = false;
 
-        GetComponent<PlayerController>().enabled = true;
+        PlayerController playerCtrl = GetComponent<PlayerController>();
+        playerCtrl.enabled = false;
 
         if (cameraFollow != null)
             cameraFollow.player = this.transform;
@@ -137,6 +139,15 @@ public class PlayerFormSwitcher : MonoBehaviour
             spiritScene.SetSpiritMode(false);
             spiritScene.spirit = null;
         }
+
+        StartCoroutine(EnableMovementAfterAnimation());
+    }
+
+    private IEnumerator EnableMovementAfterAnimation()
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        GetComponent<PlayerController>().enabled = true;
     }
 
     private void UpdateAllDoorsVisual(bool isSpirit)
