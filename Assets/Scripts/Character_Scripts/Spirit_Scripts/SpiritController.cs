@@ -234,6 +234,10 @@ public class SpiritController : MonoBehaviour
             boxRb.gravityScale = 1f;
         }
 
+        OneWaySideCollision boxCollision = possessedBox.GetComponent<OneWaySideCollision>();
+        if (boxCollision != null)
+            boxCollision.isPossessed = true;
+
         if (AudioManager.Instance != null)
             AudioManager.Instance.PlaySFX("spiritPossessBox");
 
@@ -251,25 +255,7 @@ public class SpiritController : MonoBehaviour
 
     public void ReleasePossessedBox()
     {
-        if (possessedBox != null)
-        {
-            Rigidbody2D boxRb = possessedBox.GetComponent<Rigidbody2D>();
-            if (boxRb != null)
-            {
-                boxRb.bodyType = RigidbodyType2D.Kinematic;
-                boxRb.linearVelocity = Vector2.zero;
-                boxRb.angularVelocity = 0f;
-                boxRb.gravityScale = 0f;
-            }
-
-            possessedBox = null;
-        }
-
-        isPossessing = false;
-        ShowSpirit();
-
-        if (cameraFollow != null)
-            cameraFollow.player = this.transform;
+        ReleasePossessedBoxProperly();
     }
 
     private void HandlePossession()
@@ -289,30 +275,7 @@ public class SpiritController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            isPossessing = false;
-
-            if (possessedBox != null)
-            {
-                Rigidbody2D possessedRb = possessedBox.GetComponent<Rigidbody2D>();
-                if (possessedRb != null)
-                    possessedRb.linearVelocity = Vector2.zero;
-
-                transform.position = possessedBox.transform.position;
-                AudioManager.Instance?.StopLoopSFX("boxMoving");
-            }
-
-            possessedBox = null;
-            ShowSpirit();
-
-            if (cameraFollow != null)
-                cameraFollow.player = this.transform;
-
-            SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
-            if (sceneManager != null)
-            {
-                sceneManager.SetSpiritMode(false);
-                sceneManager.spirit = null;
-            }
+            ReleasePossessedBoxProperly();
         }
     }
 
@@ -365,6 +328,41 @@ public class SpiritController : MonoBehaviour
             {
                 isGrounded = false;
             }
+        }
+    }
+
+    public void ReleasePossessedBoxProperly()
+    {
+        if (possessedBox != null)
+        {
+            Rigidbody2D boxRb = possessedBox.GetComponent<Rigidbody2D>();
+            if (boxRb != null)
+            {
+                boxRb.bodyType = RigidbodyType2D.Dynamic;
+                boxRb.gravityScale = 1f;
+                boxRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                boxRb.linearVelocity = Vector2.zero;
+                boxRb.angularVelocity = 0f;
+            }
+
+            OneWaySideCollision boxCollision = possessedBox.GetComponent<OneWaySideCollision>();
+            if (boxCollision != null)
+                boxCollision.isPossessed = false;
+
+            possessedBox = null;
+        }
+
+        isPossessing = false;
+        ShowSpirit();
+
+        if (cameraFollow != null)
+            cameraFollow.player = this.transform;
+
+        SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
+        if (sceneManager != null)
+        {
+            sceneManager.SetSpiritMode(false);
+            sceneManager.spirit = null;
         }
     }
 }
