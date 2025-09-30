@@ -28,7 +28,7 @@ public class Shard : MonoBehaviour
 
         if (playerHealth != null)
         {
-            if (!IsVisibleTo(collision.transform))
+            if (IsBlockedByBox(collision.transform))
                 return;
 
             bool willGainLife = (playerHealth.shardCount + 1 >= playerHealth.shardToLife);
@@ -58,20 +58,24 @@ public class Shard : MonoBehaviour
         }
     }
 
-    private bool IsVisibleTo(Transform target)
+    private bool IsBlockedByBox(Transform target)
     {
         Vector2 start = target.position;
         Vector2 end = transform.position;
-
         Vector2 dir = (end - start).normalized;
+        float distance = Vector2.Distance(start, end);
+
         start += dir * 0.1f;
 
-        int mask = LayerMask.GetMask("Box", "Ground", "Shard");
-        RaycastHit2D hit = Physics2D.Linecast(start, end, mask);
+        int mask = LayerMask.GetMask("Box");
+        RaycastHit2D[] hits = Physics2D.RaycastAll(start, dir, distance, mask);
 
-        if (hit.collider != null)
+        foreach (var hit in hits)
         {
-            return hit.collider.gameObject == this.gameObject;
+            if (hit.collider != null && hit.collider.gameObject != gameObject)
+            {
+                return true;
+            }
         }
 
         return false;

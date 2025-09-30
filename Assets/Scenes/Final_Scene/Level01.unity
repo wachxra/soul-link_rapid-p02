@@ -22853,6 +22853,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1531161667}
     - target: {fileID: 649580828776409939, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
+      propertyPath: jumpForce
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 649580828776409939, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 649580828776409939, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: groundCheckDistance
       value: 1.03
       objectReference: {fileID: 0}
