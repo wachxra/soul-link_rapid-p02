@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class SpiritController : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class SpiritController : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 bounceVelocity;
+
+    [Header("Animat")]
+    [SerializeField] private Animator animator;
+
 
     private bool isPossessing = false;
     private GameObject possessedBox;
@@ -63,6 +68,7 @@ public class SpiritController : MonoBehaviour
         }
         else
         {
+
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
             Collider2D nearbyInteractable = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Box", "Lever"));
@@ -82,12 +88,17 @@ public class SpiritController : MonoBehaviour
                 ui?.SetContext("IdleSpirit");
             }
 
+
             if (Input.GetKeyDown(KeyCode.E) && nearbyInteractable != null)
             {
+
+                animator.SetBool("IsHaunt", true);
                 if (nearbyInteractable.CompareTag("Box"))
                 {
                     PossessBox(nearbyInteractable.gameObject);
                     ui?.SetContext("Possessing");
+
+
                 }
                 else if (nearbyInteractable.CompareTag("Lever"))
                 {
@@ -131,6 +142,7 @@ public class SpiritController : MonoBehaviour
             Vector2 moveDir = moveInput.normalized;
             float moveStep = moveSpeed * Time.fixedDeltaTime;
             Vector2 proposedPos = rb.position + moveDir * moveStep;
+            animator.SetFloat("Speed", moveDir.magnitude);
 
             int boundaryMask = LayerMask.GetMask("Boundary");
             Collider2D hit = Physics2D.OverlapCircle(proposedPos, 0.2f, boundaryMask);

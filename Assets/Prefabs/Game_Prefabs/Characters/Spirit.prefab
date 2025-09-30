@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599088589094814112}
   - component: {fileID: 4568945744844219382}
+  - component: {fileID: -217707610192230131}
   - component: {fileID: 649580828776409939}
   - component: {fileID: 483789608061100134}
   - component: {fileID: 4730923322485994342}
@@ -89,12 +90,34 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 7.57, y: 8.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &-217707610192230131
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8977585645016906498}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41e91e93d9ce03e49bc60a0dc1c0d368, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &649580828776409939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,13 +133,16 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 7
   groundCheck: {fileID: 1599088589094814112}
-  groundCheckRadius: 1.2
+  groundCheckDistance: 0.1
+  groundCheckWidth: 0.28
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   boxLayer:
     serializedVersion: 2
     m_Bits: 0
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
 --- !u!50 &483789608061100134
 Rigidbody2D:
   serializedVersion: 5
@@ -183,7 +209,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 12.8, y: 18.1}
-    newSize: {x: 1, y: 2}
+    newSize: {x: 7.57, y: 8.36}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -217,10 +243,10 @@ MonoBehaviour:
   moveSpeed: 6
   hostBody: {fileID: 0}
   maxRadius: 30
-  boxMoveSpeed: 5
   cameraFollow: {fileID: 0}
   bounceForce: 5
   bounceDamping: 0.9
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  animator: {fileID: -217707610192230131}
