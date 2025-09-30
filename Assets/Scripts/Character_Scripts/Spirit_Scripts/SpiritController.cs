@@ -349,6 +349,14 @@ public class SpiritController : MonoBehaviour
             if (boxCollision != null)
                 boxCollision.isPossessed = false;
 
+            Vector3 boxPos = possessedBox.transform.position;
+            float offsetX = 0.6f;
+            transform.position = new Vector3(
+                boxPos.x + (isFacingRight ? offsetX : -offsetX),
+                boxPos.y,
+                transform.position.z
+            );
+
             possessedBox = null;
         }
 
