@@ -44,6 +44,24 @@ public class UIManager : MonoBehaviour
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         UpdateHearts();
         UpdateSkillIcons();
+
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "Level01" || currentScene == "Level02")
+        {
+            SetUIActive(true);
+        }
+        else
+        {
+            SetUIActive(false);
+        }
+
+        playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            UpdateHearts();
+            UpdateSkillIcons();
+        }
     }
 
     private void Update()

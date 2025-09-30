@@ -68,17 +68,11 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
-    public void Resume()
-    {
-        if (pauseMenuUI != null)
-            pauseMenuUI.SetActive(false);
-
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-    }
-
     private void Pause()
     {
+        UIManager uiManager = FindFirstObjectByType<UIManager>();
+        uiManager?.SetUIActive(false);
+
         if (pauseMenuUI != null)
         {
             pauseMenuUI.SetActive(true);
@@ -90,6 +84,18 @@ public class PauseMenuManager : MonoBehaviour
         GameIsPaused = true;
 
         AudioManager.Instance?.StopAllSFX();
+    }
+
+    public void Resume()
+    {
+        if (pauseMenuUI != null)
+            pauseMenuUI.SetActive(false);
+
+        UIManager uiManager = FindFirstObjectByType<UIManager>();
+        uiManager?.SetUIActive(true);
+
+        Time.timeScale = 1f;
+        GameIsPaused = false;
     }
 
     public void OpenSettings()

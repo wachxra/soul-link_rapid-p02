@@ -37615,9 +37615,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersistentObjectsManager
       objectReference: {fileID: 0}
+    - target: {fileID: 420364186673501819, guid: a62a60ea92c202f46a5be119521cce11, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4783181988738538260, guid: a62a60ea92c202f46a5be119521cce11, type: 3}
       propertyPath: playerPrefab
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783181988738538260, guid: a62a60ea92c202f46a5be119521cce11, type: 3}
+      propertyPath: allowedScenes.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4783181988738538260, guid: a62a60ea92c202f46a5be119521cce11, type: 3}
       propertyPath: persistentObjects.Array.size

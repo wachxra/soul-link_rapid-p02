@@ -8,14 +8,9 @@ public class PersistentObjectsManager : MonoBehaviour
     public GameObject[] persistentObjects;
 
     [Header("Scenes (Not Reset)")]
-    public string[] allowedScenes = { "Level01", "Level02", "Level03", "Level04" };
+    public string[] allowedScenes = { "Level01", "Level02" };
 
     private static bool isInitialized = false;
-
-    [Header("Persistent Player Settings")]
-    public GameObject playerPrefab;
-    public Vector3 spawnPosition;
-    private GameObject playerInstance;
 
     public static PlayerData persistentPlayerData;
 
@@ -34,24 +29,6 @@ public class PersistentObjectsManager : MonoBehaviour
         {
             if (!isInitialized)
             {
-                if (playerPrefab != null && GameObject.FindGameObjectWithTag("Player") == null)
-                {
-                    playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
-
-                    var playerHealth = playerInstance.GetComponent<PlayerHealth>();
-                    if (playerHealth != null)
-                    {
-                        if (persistentPlayerData != null)
-                        {
-                            playerHealth.currentLife = persistentPlayerData.currentLife;
-                            playerHealth.shardCount = persistentPlayerData.shardCount;
-                            PlayerHealth.totalShardsCollected = persistentPlayerData.totalShardsCollected;
-                        }
-                    }
-
-                    DontDestroyOnLoad(playerInstance);
-                }
-
                 foreach (GameObject obj in persistentObjects)
                     if (obj != null) DontDestroyOnLoad(obj);
 
@@ -65,22 +42,6 @@ public class PersistentObjectsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        if (playerPrefab != null && GameObject.FindGameObjectWithTag("Player") == null)
-        {
-            playerInstance = Instantiate(playerPrefab, spawnPosition, Quaternion.identity);
-
-            var playerHealth = playerInstance.GetComponent<PlayerHealth>();
-            if (playerHealth != null && persistentPlayerData != null)
-            {
-                playerHealth.currentLife = persistentPlayerData.currentLife;
-                playerHealth.shardCount = persistentPlayerData.shardCount;
-                PlayerHealth.totalShardsCollected = PersistentObjectsManager.persistentPlayerData.totalShardsCollected;
-            }
-
-            DontDestroyOnLoad(playerInstance);
-        }
-
     }
 
     private void OnDestroy()
