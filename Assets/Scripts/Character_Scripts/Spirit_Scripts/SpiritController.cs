@@ -55,6 +55,8 @@ public class SpiritController : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenuManager.GameIsPaused) return;
+
         if (isPossessing)
         {
             HandlePossession();
@@ -122,6 +124,8 @@ public class SpiritController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PauseMenuManager.GameIsPaused) return;
+
         if (!isPossessing)
         {
             Vector2 moveDir = moveInput.normalized;

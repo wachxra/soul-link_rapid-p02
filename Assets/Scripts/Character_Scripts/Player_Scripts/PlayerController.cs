@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenuManager.GameIsPaused) return;
+
         moveInput = Input.GetAxisRaw("Horizontal");
 
         if (AudioManager.Instance != null && CompareTag("Player"))
@@ -63,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (PauseMenuManager.GameIsPaused) return;
+
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
         bool currentlyGrounded = IsGrounded();

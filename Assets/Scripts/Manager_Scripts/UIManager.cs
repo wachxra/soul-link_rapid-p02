@@ -30,12 +30,17 @@ public class UIManager : MonoBehaviour
     public Sprite eSpiritLever;
     public Sprite eSpiritPossessBox;
 
+    [Header("UI Parent")]
+    public GameObject uiParent;
+
     private PlayerHealth playerHealth;
     private bool isSpirit = false;
     private string currentContext = "Idle";
 
     private void Start()
     {
+        SetUIActive(true);
+
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         UpdateHearts();
         UpdateSkillIcons();
@@ -49,6 +54,20 @@ public class UIManager : MonoBehaviour
         {
             playerHealth.ResetLife();
             SceneManager.LoadScene(gameOverSceneName);
+        }
+    }
+
+    public void SetUIActive(bool active)
+    {
+        if (uiParent != null)
+            uiParent.SetActive(active);
+        else
+        {
+            foreach (var heart in hearts)
+                heart.gameObject.SetActive(active);
+
+            if (skillEIcon != null) skillEIcon.gameObject.SetActive(active);
+            if (skillFIcon != null) skillFIcon.gameObject.SetActive(active);
         }
     }
 

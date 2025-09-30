@@ -45,6 +45,8 @@ public class PlayerFormSwitcher : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenuManager.GameIsPaused) return;
+
         if (Input.GetKeyDown(switchKey))
         {
             if (!isInSpirit)

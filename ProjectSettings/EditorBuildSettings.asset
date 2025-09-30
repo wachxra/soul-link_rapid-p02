@@ -24,22 +24,25 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu_Scene.unity
     guid: 05a7c67d6d5b783408a608bdf42af37f
   - enabled: 1
-    path: Assets/Scenes/Intro_Scene.unity
+    path: Assets/Scenes/Cutscenes/Intro_Scene.unity
     guid: 1fb81fcb68c7a4440b1573302688e36a
   - enabled: 1
     path: Assets/Scenes/Final_Scene/Level01.unity
     guid: b87e2adb92d5180459a951e672748a27
   - enabled: 1
+    path: Assets/Scenes/Cutscenes/01To02_Scene.unity
+    guid: 37a31d1b72daaaf458b7699f27f15e66
+  - enabled: 1
     path: Assets/Scenes/Final_Scene/Level02.unity
     guid: 5924b9d534a88744d88dee40d573384a
   - enabled: 1
-    path: Assets/Scenes/Outro_Scene.unity
+    path: Assets/Scenes/Cutscenes/Outro_Scene.unity
     guid: c8d1483be2a566043af187312d720ec8
   - enabled: 1
-    path: Assets/Scenes/GameOver_Scene.unity
+    path: Assets/Scenes/GameResult/GameOver_Scene.unity
     guid: ff1f2092bd472db47b73ddaa5c400abf
   - enabled: 1
-    path: Assets/Scenes/GameWon_Scene.unity
+    path: Assets/Scenes/GameResult/GameWon_Scene.unity
     guid: 5fdd70664d382794e942428518738daa
   - enabled: 1
     path: Assets/Scenes/EndCredit_Scene.unity

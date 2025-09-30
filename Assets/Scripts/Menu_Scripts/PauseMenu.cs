@@ -88,6 +88,8 @@ public class PauseMenuManager : MonoBehaviour
 
         Time.timeScale = 0f;
         GameIsPaused = true;
+
+        AudioManager.Instance?.StopAllSFX();
     }
 
     public void OpenSettings()

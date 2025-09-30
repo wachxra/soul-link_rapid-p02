@@ -3520,6 +3520,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2797661074854273738, guid: 1cff94afcf98c3642ada2b5a25156e25, type: 3}
+      propertyPath: uiParent
+      value: 
+      objectReference: {fileID: 1021581062}
+    - target: {fileID: 2797661074854273738, guid: 1cff94afcf98c3642ada2b5a25156e25, type: 3}
       propertyPath: eHumanIdle
       value: 
       objectReference: {fileID: 21300000, guid: e7416b966023111459b07a38ed79b296, type: 3}
@@ -23057,7 +23061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7255482149660823156, guid: cc48c3c39813b8c4b8b0c352dedb0411, type: 3}
       propertyPath: sceneName
-      value: Level02
+      value: 01To02_Scene
       objectReference: {fileID: 0}
     - target: {fileID: 7255482149660823156, guid: cc48c3c39813b8c4b8b0c352dedb0411, type: 3}
       propertyPath: closedSprite
@@ -26990,6 +26994,11 @@ Transform:
   - {fileID: 418328660}
   m_Father: {fileID: 1392125676}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1021581062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2660738650617319185, guid: 024fb7e123bd88743a9102bd6be130a1, type: 3}
+  m_PrefabInstance: {fileID: 1798962727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1030831430
 GameObject:
   m_ObjectHideFlags: 0
