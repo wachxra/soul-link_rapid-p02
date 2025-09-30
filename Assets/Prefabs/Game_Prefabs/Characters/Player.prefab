@@ -239,6 +239,6 @@ MonoBehaviour:
   spiritPrefab: {fileID: 8977585645016906498, guid: 902965f491d6c394faa76ba9b3b1c031, type: 3}
   switchKey: 102
   spiritRadius: 7.5
-  boxMoveSpeed: 15
+  boxMoveSpeed: 3
   cameraFollow: {fileID: 0}
   spiritScene: {fileID: 0}

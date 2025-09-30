@@ -22679,21 +22679,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 649580828776409939, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
-      propertyPath: fallMultiplier
-      value: 2.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 649580828776409939, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
-      propertyPath: lowJumpMultiplier
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 649580828776409939, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
-      propertyPath: groundCheckDistance
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.4
+      value: -5.62
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22736,13 +22724,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1084224579}
     - target: {fileID: 5636599399042149123, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
+      propertyPath: boxMoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636599399042149123, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 788517081}
-    - target: {fileID: 5636599399042149123, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
-      propertyPath: spiritRadius
-      value: 7.5
-      objectReference: {fileID: 0}
     - target: {fileID: 8977585645016906498, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_Name
       value: Player

@@ -60,16 +60,17 @@ public class PlayerFormSwitcher : MonoBehaviour
 
         if (spiritPrefab == null) return;
 
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX("spiritOn");
+        AudioManager.Instance?.PlaySFX("spiritOn");
+        AudioManager.Instance?.StopLoopSFX("walking");
 
         spiritInstance = Instantiate(spiritPrefab, transform.position, Quaternion.identity);
 
         SpiritController spiritCtrl = spiritInstance.GetComponent<SpiritController>();
         spiritCtrl.hostBody = this.transform;
         spiritCtrl.maxRadius = spiritRadius;
-        spiritCtrl.boxMoveSpeed = boxMoveSpeed;
         spiritCtrl.cameraFollow = cameraFollow;
+
+        spiritCtrl.SetBoxMoveSpeed(boxMoveSpeed);
 
         if (spiritScene != null)
         {
@@ -88,9 +89,9 @@ public class PlayerFormSwitcher : MonoBehaviour
 
         UpdateAllDoorsVisual(true);
 
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlayLoopSFX("spiritHaunting");
+        AudioManager.Instance?.PlayLoopSFX("spiritHaunting");
     }
+
 
     private void ReturnToBody()
     {

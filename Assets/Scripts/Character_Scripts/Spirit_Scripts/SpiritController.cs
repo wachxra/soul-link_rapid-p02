@@ -10,8 +10,6 @@ public class SpiritController : MonoBehaviour
     public Transform hostBody;
     public float maxRadius = 30f;
 
-    [HideInInspector] public float boxMoveSpeed = 2.5f;
-
     [Header("Camera")]
     public CameraFollowPlayer cameraFollow;
 
@@ -33,6 +31,15 @@ public class SpiritController : MonoBehaviour
     private Collider2D col;
 
     private UIManager ui;
+
+    private Vector2 lastBoxPos;
+
+    private float boxMoveSpeed;
+
+    public void SetBoxMoveSpeed(float speed)
+    {
+        boxMoveSpeed = speed;
+    }
 
     private void Start()
     {
@@ -158,9 +165,9 @@ public class SpiritController : MonoBehaviour
         {
             float move = Input.GetAxisRaw("Horizontal");
 
-            Vector2 velocity = boxRb.linearVelocity;
-            velocity.x = move * boxMoveSpeed;
-            boxRb.linearVelocity = velocity;
+            Vector2 vel = boxRb.linearVelocity;
+            vel.x = move * boxMoveSpeed;
+            boxRb.linearVelocity = vel;
 
             if (hostBody != null)
             {
@@ -172,10 +179,15 @@ public class SpiritController : MonoBehaviour
                 }
             }
 
-            if (Mathf.Abs(move) > 0.01f)
+            bool isOnGround = boxRb.IsTouchingLayers(LayerMask.GetMask("Ground"));
+            bool isActuallyMoving = (Mathf.Abs(vel.x) > 0.01f);
+
+            if (Mathf.Abs(move) > 0.01f && isOnGround && isActuallyMoving)
                 AudioManager.Instance?.PlayLoopSFX("boxMoving");
             else
                 AudioManager.Instance?.StopLoopSFX("boxMoving");
+
+            lastBoxPos = boxRb.position;
         }
     }
 
@@ -190,6 +202,12 @@ public class SpiritController : MonoBehaviour
         {
             boxRb.bodyType = RigidbodyType2D.Dynamic;
             boxRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            boxRb.gravityScale = 1f;
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX("spiritPossessBox");
         }
 
         if (cameraFollow != null)
@@ -206,6 +224,7 @@ public class SpiritController : MonoBehaviour
                 boxRb.bodyType = RigidbodyType2D.Kinematic;
                 boxRb.linearVelocity = Vector2.zero;
                 boxRb.angularVelocity = 0f;
+                boxRb.gravityScale = 0f;
             }
 
             possessedBox = null;
@@ -218,7 +237,6 @@ public class SpiritController : MonoBehaviour
             cameraFollow.player = this.transform;
     }
 
-
     private void HandlePossession()
     {
         if (possessedBox == null)
@@ -230,35 +248,6 @@ public class SpiritController : MonoBehaviour
             return;
         }
 
-        Rigidbody2D boxRb = possessedBox.GetComponent<Rigidbody2D>();
-        if (boxRb != null)
-        {
-            float move = Input.GetAxisRaw("Horizontal");
-            Vector2 proposedPos = boxRb.position + new Vector2(move * boxMoveSpeed * Time.deltaTime, 0);
-
-            if (hostBody != null)
-            {
-                float dist = (proposedPos - (Vector2)hostBody.position).magnitude;
-                if (dist > maxRadius)
-                {
-                    Vector2 dir = (proposedPos - (Vector2)hostBody.position).normalized;
-                    proposedPos = (Vector2)hostBody.position + dir * maxRadius;
-                }
-            }
-
-            bool isOnGround = boxRb.IsTouchingLayers(LayerMask.GetMask("Ground"));
-
-            if (Mathf.Abs(move) > 0.01f && isOnGround)
-            {
-                AudioManager.Instance?.PlayLoopSFX("boxMoving");
-            }
-            else
-            {
-                AudioManager.Instance?.StopLoopSFX("boxMoving");
-            }
-
-            boxRb.MovePosition(proposedPos);
-        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
