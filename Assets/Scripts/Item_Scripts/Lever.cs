@@ -60,6 +60,14 @@ public class Lever : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Transform interactor = null;
+            Collider2D col = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Player", "Spirit"));
+            if (col != null)
+                interactor = col.transform;
+
+            if (interactor == null || !IsVisibleTo(interactor))
+                return;
+
             bool anyMoving = false;
 
             if (AudioManager.Instance != null)
@@ -123,5 +131,24 @@ public class Lever : MonoBehaviour
         lp.isMoving = false;
 
         AudioManager.Instance?.StopLoopSFX("movingPlatform");
+    }
+
+    private bool IsVisibleTo(Transform target)
+    {
+        Vector2 start = target.position;
+        Vector2 end = transform.position;
+
+        Vector2 dir = (end - start).normalized;
+        start += dir * 0.1f;
+
+        int mask = LayerMask.GetMask("Box", "Ground");
+        RaycastHit2D hit = Physics2D.Linecast(start, end, mask);
+
+        if (hit.collider != null)
+        {
+            return hit.collider.gameObject == this.gameObject;
+        }
+
+        return true;
     }
 }
