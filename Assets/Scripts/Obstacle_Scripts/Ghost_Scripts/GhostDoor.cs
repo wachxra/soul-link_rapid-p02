@@ -105,6 +105,8 @@ public class GhostDoor : MonoBehaviour
                     if (AudioManager.Instance != null)
                     {
                         AudioManager.Instance.StopLoopSFX("spiritHaunting");
+                        AudioManager.Instance.StopLoopSFX("walking");
+                        AudioManager.Instance?.StopLoopSFX("boxMoving");
                     }
 
                     SceneManager.LoadScene(gameOverSceneName);

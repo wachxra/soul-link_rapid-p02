@@ -185,22 +185,39 @@ public class SpiritController : MonoBehaviour
         possessedBox = box;
         HideSpirit();
 
-        if (AudioManager.Instance != null)
-            AudioManager.Instance.PlaySFX("spiritPossessBox");
-
-        BoxCollisionHelper helper = possessedBox.GetComponent<BoxCollisionHelper>();
-        if (helper == null)
+        Rigidbody2D boxRb = possessedBox.GetComponent<Rigidbody2D>();
+        if (boxRb != null)
         {
-            helper = possessedBox.AddComponent<BoxCollisionHelper>();
+            boxRb.bodyType = RigidbodyType2D.Dynamic;
+            boxRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
-        helper.Setup(this, groundLayer);
-
-        SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
-        if (sceneManager != null) sceneManager.SetSpiritMode(true);
 
         if (cameraFollow != null)
             cameraFollow.player = possessedBox.transform;
     }
+
+    public void ReleasePossessedBox()
+    {
+        if (possessedBox != null)
+        {
+            Rigidbody2D boxRb = possessedBox.GetComponent<Rigidbody2D>();
+            if (boxRb != null)
+            {
+                boxRb.bodyType = RigidbodyType2D.Kinematic;
+                boxRb.linearVelocity = Vector2.zero;
+                boxRb.angularVelocity = 0f;
+            }
+
+            possessedBox = null;
+        }
+
+        isPossessing = false;
+        ShowSpirit();
+
+        if (cameraFollow != null)
+            cameraFollow.player = this.transform;
+    }
+
 
     private void HandlePossession()
     {
@@ -229,15 +246,15 @@ public class SpiritController : MonoBehaviour
                 }
             }
 
-            if (Mathf.Abs(move) > 0.01f)
+            bool isOnGround = boxRb.IsTouchingLayers(LayerMask.GetMask("Ground"));
+
+            if (Mathf.Abs(move) > 0.01f && isOnGround)
             {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.PlayLoopSFX("boxMoving");
+                AudioManager.Instance?.PlayLoopSFX("boxMoving");
             }
             else
             {
-                if (AudioManager.Instance != null)
-                    AudioManager.Instance.StopLoopSFX("boxMoving");
+                AudioManager.Instance?.StopLoopSFX("boxMoving");
             }
 
             boxRb.MovePosition(proposedPos);
@@ -249,7 +266,13 @@ public class SpiritController : MonoBehaviour
 
             if (possessedBox != null)
             {
+                Rigidbody2D possessedRb = possessedBox.GetComponent<Rigidbody2D>();
+                if (possessedRb != null)
+                    possessedRb.linearVelocity = Vector2.zero;
+
                 transform.position = possessedBox.transform.position;
+
+                AudioManager.Instance?.StopLoopSFX("boxMoving");
             }
 
             possessedBox = null;

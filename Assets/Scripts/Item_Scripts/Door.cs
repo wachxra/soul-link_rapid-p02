@@ -93,6 +93,13 @@ public class Door : MonoBehaviour
             if (AudioManager.Instance != null)
                 AudioManager.Instance.PlaySFX("moveToNextLevel");
 
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.StopLoopSFX("spiritHaunting");
+                AudioManager.Instance.StopLoopSFX("walking");
+                AudioManager.Instance?.StopLoopSFX("boxMoving");
+            }
+
             if (!string.IsNullOrEmpty(sceneName))
                 SceneManager.LoadScene(sceneName);
         }

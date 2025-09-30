@@ -95,11 +95,22 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        StopAllSFX();
+
         PlayBGMForScene(scene.name);
         UpdateUI();
+    }
 
-        StopLoopSFX("walking");
-        StopLoopSFX("boxMoving");
+    public void StopAllSFX()
+    {
+        foreach (var sfx in sfxDict.Values)
+        {
+            if (sfx != null && sfx.isPlaying)
+            {
+                sfx.Stop();
+                sfx.loop = false;
+            }
+        }
     }
 
     private void OnEnable()

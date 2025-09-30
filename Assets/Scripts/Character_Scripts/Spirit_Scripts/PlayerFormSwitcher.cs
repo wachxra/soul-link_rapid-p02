@@ -98,12 +98,21 @@ public class PlayerFormSwitcher : MonoBehaviour
 
         if (AudioManager.Instance != null)
         {
+            AudioManager.Instance?.StopLoopSFX("boxMoving");
             AudioManager.Instance.StopLoopSFX("spiritHaunting");
             AudioManager.Instance.PlaySFX("spiritOff");
         }
 
         if (spiritInstance != null)
+        {
+            SpiritController spiritCtrl = spiritInstance.GetComponent<SpiritController>();
+            if (spiritCtrl != null)
+            {
+                spiritCtrl.ReleasePossessedBox();
+            }
+
             Destroy(spiritInstance);
+        }
 
         isInSpirit = false;
 

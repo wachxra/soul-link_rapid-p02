@@ -20,7 +20,7 @@ public class OneWaySideCollision : MonoBehaviour
             Rigidbody2D playerRb = playerCol.GetComponent<Rigidbody2D>();
             if (playerRb == null) continue;
 
-            if (playerCol.bounds.min.y >= boxCollider.bounds.max.y - 0.05f)
+            if (playerCol.bounds.min.y >= boxCollider.bounds.max.y - 0.1f)
             {
                 Physics2D.IgnoreCollision(playerCol, boxCollider, false);
             }
