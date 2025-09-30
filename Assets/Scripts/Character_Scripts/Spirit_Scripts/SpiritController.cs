@@ -175,12 +175,13 @@ public class SpiritController : MonoBehaviour
                 if (dist > maxRadius)
                 {
                     Vector2 dir = (boxRb.position - (Vector2)hostBody.position).normalized;
-                    boxRb.position = (Vector2)hostBody.position + dir * maxRadius;
+                    Vector2 limitedPos = (Vector2)hostBody.position + dir * maxRadius;
+                    boxRb.position = new Vector2(limitedPos.x, boxRb.position.y);
                 }
             }
 
+            bool isActuallyMoving = Vector2.Distance(boxRb.position, lastBoxPos) > 0.001f;
             bool isOnGround = boxRb.IsTouchingLayers(LayerMask.GetMask("Ground"));
-            bool isActuallyMoving = (Mathf.Abs(vel.x) > 0.01f);
 
             if (Mathf.Abs(move) > 0.01f && isOnGround && isActuallyMoving)
                 AudioManager.Instance?.PlayLoopSFX("boxMoving");
