@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: f5233f542c028ac4eb3461063f8f12f4
+guid: fd115b1b3af45cb4385dd615de88030a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6738007557780009955
-    second: "\u0E2A\u0E34\u0E07 2_0"
+      213: -120664987619374115
+    second: "\u0E2A\u0E34\u0E07 10_0"
+  - first:
+      213: 7140918266193471106
+    second: "\u0E2A\u0E34\u0E07 10_1"
+  - first:
+      213: 4954890976596010636
+    second: "\u0E2A\u0E34\u0E07 10_2"
+  - first:
+      213: -3160144893861160249
+    second: "\u0E2A\u0E34\u0E07 10_3"
+  - first:
+      213: -3323696683477687451
+    second: "\u0E2A\u0E34\u0E07 10_4"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +108,62 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0E2A\u0E34\u0E07 2_0"
+      name: "\u0E2A\u0E34\u0E07 10_1"
       rect:
         serializedVersion: 2
-        x: 32
-        y: 184
-        width: 750
-        height: 836
+        x: 241
+        y: 140
+        width: 715
+        height: 689
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3e3ff5f9c26328d50800000000000000
-      internalID: 6738007557780009955
+      spriteID: 2866f823453a91360800000000000000
+      internalID: 7140918266193471106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0E2A\u0E34\u0E07 10_3"
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 343
+        width: 56
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca14a256f8e424d0800000000000000
+      internalID: -3160144893861160249
       vertices: []
       indices: 
       edges: []
@@ -125,7 +172,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bf120323cf66cb242a6221db1ae3b671
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +182,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u0E2A\u0E34\u0E07 2_0": 6738007557780009955
+      "\u0E2A\u0E34\u0E07 10_0": -120664987619374115
+      "\u0E2A\u0E34\u0E07 10_1": 7140918266193471106
+      "\u0E2A\u0E34\u0E07 10_2": 4954890976596010636
+      "\u0E2A\u0E34\u0E07 10_3": -3160144893861160249
+      "\u0E2A\u0E34\u0E07 10_4": -3323696683477687451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

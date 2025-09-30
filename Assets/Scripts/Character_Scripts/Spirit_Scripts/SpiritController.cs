@@ -25,9 +25,8 @@ public class SpiritController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 bounceVelocity;
 
-    [Header("Animat")]
+    [Header("Animate")]
     [SerializeField] private Animator animator;
-
 
     private bool isPossessing = false;
     private GameObject possessedBox;
@@ -40,6 +39,8 @@ public class SpiritController : MonoBehaviour
     private Vector2 lastBoxPos;
 
     private float boxMoveSpeed;
+
+    private bool isFacingRight = true;
 
     public void SetBoxMoveSpeed(float speed)
     {
@@ -68,8 +69,10 @@ public class SpiritController : MonoBehaviour
         }
         else
         {
-
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            if (moveInput.x > 0 && !isFacingRight) Flip();
+            else if (moveInput.x < 0 && isFacingRight) Flip();
 
             Collider2D nearbyInteractable = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Box", "Lever"));
             if (nearbyInteractable != null)
@@ -88,17 +91,12 @@ public class SpiritController : MonoBehaviour
                 ui?.SetContext("IdleSpirit");
             }
 
-
             if (Input.GetKeyDown(KeyCode.E) && nearbyInteractable != null)
             {
-
-                animator.SetBool("IsHaunt", true);
                 if (nearbyInteractable.CompareTag("Box"))
                 {
                     PossessBox(nearbyInteractable.gameObject);
                     ui?.SetContext("Possessing");
-
-
                 }
                 else if (nearbyInteractable.CompareTag("Lever"))
                 {
@@ -130,6 +128,17 @@ public class SpiritController : MonoBehaviour
                 Vector2 dir = (transform.position - hostBody.position).normalized;
                 transform.position = hostBody.position + (Vector3)dir * maxRadius;
             }
+        }
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.flipX = !isFacingRight;
         }
     }
 
@@ -223,12 +232,18 @@ public class SpiritController : MonoBehaviour
         }
 
         if (AudioManager.Instance != null)
-        {
             AudioManager.Instance.PlaySFX("spiritPossessBox");
-        }
 
         if (cameraFollow != null)
             cameraFollow.player = possessedBox.transform;
+
+        SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
+        if (sceneManager != null)
+        {
+            sceneManager.spirit = this.transform;
+            sceneManager.hostBody = hostBody;
+            sceneManager.SetSpiritMode(true);
+        }
     }
 
     public void ReleasePossessedBox()
@@ -262,9 +277,12 @@ public class SpiritController : MonoBehaviour
             ShowSpirit();
             if (cameraFollow != null)
                 cameraFollow.player = this.transform;
+
+            SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
+            if (sceneManager != null) sceneManager.SetSpiritMode(false);
+
             return;
         }
-
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -277,7 +295,6 @@ public class SpiritController : MonoBehaviour
                     possessedRb.linearVelocity = Vector2.zero;
 
                 transform.position = possessedBox.transform.position;
-
                 AudioManager.Instance?.StopLoopSFX("boxMoving");
             }
 
@@ -288,7 +305,11 @@ public class SpiritController : MonoBehaviour
                 cameraFollow.player = this.transform;
 
             SpiritSceneManager sceneManager = Object.FindFirstObjectByType<SpiritSceneManager>();
-            if (sceneManager != null) sceneManager.SetSpiritMode(false);
+            if (sceneManager != null)
+            {
+                sceneManager.SetSpiritMode(false);
+                sceneManager.spirit = null;
+            }
         }
     }
 

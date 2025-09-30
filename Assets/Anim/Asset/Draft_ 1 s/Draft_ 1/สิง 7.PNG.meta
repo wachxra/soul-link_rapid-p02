@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: cec9cfc471222e044b84cf9a6b95422f
+guid: 9dae9f607c3a1164e8a02d845f3559fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5254087639302813467
-    second: "\u0E2A\u0E34\u0E07 15_0"
+      213: -4069561271206587925
+    second: "\u0E2A\u0E34\u0E07 7_0"
   - first:
-      213: -5677852574074529116
-    second: "\u0E2A\u0E34\u0E07 15_1"
+      213: -6600095905842320057
+    second: "\u0E2A\u0E34\u0E07 7_1"
   - first:
-      213: -8401800055738701966
-    second: "\u0E2A\u0E34\u0E07 15_2"
+      213: 5041484207322993368
+    second: "\u0E2A\u0E34\u0E07 7_2"
   - first:
-      213: -5665714275327615102
-    second: "\u0E2A\u0E34\u0E07 15_3"
-  - first:
-      213: -1514158362698490771
-    second: "\u0E2A\u0E34\u0E07 15_4"
+      213: -4957132700840593610
+    second: "\u0E2A\u0E34\u0E07 7_3"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,17 +105,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0E2A\u0E34\u0E07 15_1"
+      name: "\u0E2A\u0E34\u0E07 7_1"
       rect:
         serializedVersion: 2
-        x: 282
+        x: 149
         y: 140
-        width: 684
-        height: 509
+        width: 1096
+        height: 808
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +137,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4aa104b9a273431b0800000000000000
-      internalID: -5677852574074529116
+      spriteID: 74d22c01ebfb764a0800000000000000
+      internalID: -6600095905842320057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0E2A\u0E34\u0E07 7_2"
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 355
+        width: 148
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d29a36fc23f6f540800000000000000
+      internalID: 5041484207322993368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0E2A\u0E34\u0E07 7_3"
+      rect:
+        serializedVersion: 2
+        x: 1189
+        y: 222
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6377ce5921ab43bb0800000000000000
+      internalID: -4957132700840593610
       vertices: []
       indices: 
       edges: []
@@ -137,7 +191,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 249af5ffc1f184f46b3f413b2841b1bb
+    spriteID: 8a8edfee78f94ae489c760f50a4e2337
     internalID: 0
     vertices: []
     indices: 
@@ -147,11 +201,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u0E2A\u0E34\u0E07 15_0": 5254087639302813467
-      "\u0E2A\u0E34\u0E07 15_1": -5677852574074529116
-      "\u0E2A\u0E34\u0E07 15_2": -8401800055738701966
-      "\u0E2A\u0E34\u0E07 15_3": -5665714275327615102
-      "\u0E2A\u0E34\u0E07 15_4": -1514158362698490771
+      "\u0E2A\u0E34\u0E07 7_0": -4069561271206587925
+      "\u0E2A\u0E34\u0E07 7_1": -6600095905842320057
+      "\u0E2A\u0E34\u0E07 7_2": 5041484207322993368
+      "\u0E2A\u0E34\u0E07 7_3": -4957132700840593610
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

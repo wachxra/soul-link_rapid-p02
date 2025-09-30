@@ -909,7 +909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 88389603}
   - component: {fileID: 88389604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '[5]-1floor_0'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +956,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -979,7 +979,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 2474838529716385603, guid: 12e74ef2c8712ec40bc4f8ec6968b07b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5647059, g: 0.43137255, b: 0.41568628, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4959,7 +4959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3235301108688493720, guid: 9572c47182af3c945b14b27f8d6d07ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.08
+      value: -17.53
       objectReference: {fileID: 0}
     - target: {fileID: 3235301108688493720, guid: 9572c47182af3c945b14b27f8d6d07ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10483,7 +10483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 829804679}
   - component: {fileID: 829804680}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '[10]-stairs1_0 (1)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10530,7 +10530,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10553,7 +10553,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -609981423255871979, guid: c4ee691b721a51f419451e850c9013d2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5647059, g: 0.43137255, b: 0.41568628, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -24788,7 +24788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968975676}
   - component: {fileID: 968975677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '[10]-stairs1_0'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24835,7 +24835,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24858,7 +24858,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: -609981423255871979, guid: c4ee691b721a51f419451e850c9013d2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5647059, g: 0.43137255, b: 0.41568628, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -25658,7 +25658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5704098907467447322, guid: f98937716baa92641ae3a1cfb8eb8822, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.046118
+      value: -22.5
       objectReference: {fileID: 0}
     - target: {fileID: 5704098907467447322, guid: f98937716baa92641ae3a1cfb8eb8822, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30100,11 +30100,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.58
+      value: -1.62
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.55
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.z

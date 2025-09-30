@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 9cab018e35b5fec4584e287ad45b611a
+guid: 64dc3e07bc52abe46b64ba00088de1cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 782326090174414125
-    second: "\u0E2A\u0E34\u0E07 13_0"
+      213: -701542910093717560
+    second: "\u0E2A\u0E34\u0E07 18_0"
   - first:
-      213: -2533542582480674610
-    second: "\u0E2A\u0E34\u0E07 13_1"
+      213: 4980639803806339558
+    second: "\u0E2A\u0E34\u0E07 18_1"
   - first:
-      213: 4291512323024426414
-    second: "\u0E2A\u0E34\u0E07 13_2"
+      213: 7476289984587559025
+    second: "\u0E2A\u0E34\u0E07 18_2"
   - first:
-      213: -4496561876173301285
-    second: "\u0E2A\u0E34\u0E07 13_3"
+      213: -3460298896826418473
+    second: "\u0E2A\u0E34\u0E07 18_3"
   - first:
-      213: 237420383752417652
-    second: "\u0E2A\u0E34\u0E07 13_4"
+      213: -4346044026050978636
+    second: "\u0E2A\u0E34\u0E07 18_4"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,17 +108,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0E2A\u0E34\u0E07 13_1"
+      name: "\u0E2A\u0E34\u0E07 18_2"
       rect:
         serializedVersion: 2
         x: 282
         y: 140
-        width: 704
-        height: 687
+        width: 691
+        height: 396
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec0e9ebc17c07dcd0800000000000000
-      internalID: -2533542582480674610
+      spriteID: 170f621412e11c760800000000000000
+      internalID: 7476289984587559025
       vertices: []
       indices: 
       edges: []
@@ -137,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 33d6d5cb717f1a64d8d94df455ec5672
+    spriteID: cbbd2b118dc47ef4eaf7da9cfa94b503
     internalID: 0
     vertices: []
     indices: 
@@ -147,11 +160,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u0E2A\u0E34\u0E07 13_0": 782326090174414125
-      "\u0E2A\u0E34\u0E07 13_1": -2533542582480674610
-      "\u0E2A\u0E34\u0E07 13_2": 4291512323024426414
-      "\u0E2A\u0E34\u0E07 13_3": -4496561876173301285
-      "\u0E2A\u0E34\u0E07 13_4": 237420383752417652
+      "\u0E2A\u0E34\u0E07 18_0": -701542910093717560
+      "\u0E2A\u0E34\u0E07 18_1": 4980639803806339558
+      "\u0E2A\u0E34\u0E07 18_2": 7476289984587559025
+      "\u0E2A\u0E34\u0E07 18_3": -3460298896826418473
+      "\u0E2A\u0E34\u0E07 18_4": -4346044026050978636
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
