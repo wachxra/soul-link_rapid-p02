@@ -32353,19 +32353,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8769769057599091027, guid: 47b1ba489d378c7439adfdf907e4d37e, type: 3}
       propertyPath: humanBgColor.b
-      value: 0.2924528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8769769057599091027, guid: 47b1ba489d378c7439adfdf907e4d37e, type: 3}
       propertyPath: humanBgColor.g
-      value: 0.2924528
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8769769057599091027, guid: 47b1ba489d378c7439adfdf907e4d37e, type: 3}
       propertyPath: humanBgColor.r
-      value: 0.2924528
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769769057599091027, guid: 47b1ba489d378c7439adfdf907e4d37e, type: 3}
+      propertyPath: spiritBgColor.b
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769769057599091027, guid: 47b1ba489d378c7439adfdf907e4d37e, type: 3}
+      propertyPath: spiritBgColor.g
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769769057599091027, guid: 47b1ba489d378c7439adfdf907e4d37e, type: 3}
+      propertyPath: spiritBgColor.r
+      value: 0.1981132
       objectReference: {fileID: 0}
     - target: {fileID: 8769769057599091027, guid: 47b1ba489d378c7439adfdf907e4d37e, type: 3}
       propertyPath: minDarknessAmount
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

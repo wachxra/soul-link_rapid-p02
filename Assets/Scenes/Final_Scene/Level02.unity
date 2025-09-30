@@ -29622,11 +29622,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -57.42
+      value: -1.47
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.02
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 1599088589094814112, guid: 07b333ce76306834eb4511b9ae1f213c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29877,6 +29877,10 @@ PrefabInstance:
     - target: {fileID: 6824383730280757844, guid: f325a871b24662c4c96b75fe636c1482, type: 3}
       propertyPath: m_Name
       value: GhostWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824383730280757844, guid: f325a871b24662c4c96b75fe636c1482, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31550,6 +31554,10 @@ PrefabInstance:
     - target: {fileID: 6824383730280757844, guid: f325a871b24662c4c96b75fe636c1482, type: 3}
       propertyPath: m_Name
       value: GhostWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824383730280757844, guid: f325a871b24662c4c96b75fe636c1482, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34615,7 +34623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965041995}
   - component: {fileID: 1965041996}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Black_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38432,6 +38440,10 @@ PrefabInstance:
     - target: {fileID: 6824383730280757844, guid: f325a871b24662c4c96b75fe636c1482, type: 3}
       propertyPath: m_Name
       value: GhostWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824383730280757844, guid: f325a871b24662c4c96b75fe636c1482, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

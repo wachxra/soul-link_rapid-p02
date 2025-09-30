@@ -7,7 +7,7 @@ public class SpiritSceneManager : MonoBehaviour
 {
     [Header("Spirit Mode Settings")]
     [Range(0f, 1f)] public float minDarknessAmount = 0.2f;
-    [Range(0f, 1f)] public float maxDarknessAmount = 0.8f;
+    [Range(0f, 1f)] public float maxDarknessAmount = 1f;
 
     [Header("Glow Settings")]
     public Color glowColor = Color.cyan;
@@ -52,7 +52,10 @@ public class SpiritSceneManager : MonoBehaviour
         {
             float distance = Vector3.Distance(spirit.position, hostBody.position);
             float t = Mathf.Clamp01(distance / maxDistance);
-            float darkness = Mathf.Lerp(minDarknessAmount, maxDarknessAmount, t);
+
+            float currentMinDarkness = Mathf.Lerp(minDarknessAmount, maxDarknessAmount, t);
+
+            float darkness = Mathf.Lerp(currentMinDarkness, maxDarknessAmount, t);
 
             if (mainCamera != null)
             {
@@ -67,6 +70,10 @@ public class SpiritSceneManager : MonoBehaviour
                 int layer = sr.gameObject.layer;
 
                 if (layer == LayerMask.NameToLayer("Box") || layer == LayerMask.NameToLayer("Lever"))
+                {
+                    continue;
+                }
+                else if (layer == LayerMask.NameToLayer("BG"))
                 {
                     continue;
                 }

@@ -145,7 +145,37 @@ public class SpiritController : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
+            HandleBoxMovement();
+        }
+    }
+
+    private void HandleBoxMovement()
+    {
+        if (possessedBox == null) return;
+
+        Rigidbody2D boxRb = possessedBox.GetComponent<Rigidbody2D>();
+        if (boxRb != null)
+        {
+            float move = Input.GetAxisRaw("Horizontal");
+
+            Vector2 velocity = boxRb.linearVelocity;
+            velocity.x = move * boxMoveSpeed;
+            boxRb.linearVelocity = velocity;
+
+            if (hostBody != null)
+            {
+                float dist = Vector2.Distance(boxRb.position, hostBody.position);
+                if (dist > maxRadius)
+                {
+                    Vector2 dir = (boxRb.position - (Vector2)hostBody.position).normalized;
+                    boxRb.position = (Vector2)hostBody.position + dir * maxRadius;
+                }
+            }
+
+            if (Mathf.Abs(move) > 0.01f)
+                AudioManager.Instance?.PlayLoopSFX("boxMoving");
+            else
+                AudioManager.Instance?.StopLoopSFX("boxMoving");
         }
     }
 
